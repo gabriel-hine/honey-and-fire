@@ -1,0 +1,396 @@
+/*
+	Honey & Fire — Custom Styles
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap');
+
+/* ─── Hero ─── */
+
+#hero h2 {
+	font-family: 'Playfair Display', serif;
+	font-size: 5em;
+	letter-spacing: 0.05em;
+	text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+#hero h2 .amp {
+	color: #D4A030;
+	font-style: italic;
+}
+
+#hero p {
+	font-size: 1.4em;
+	letter-spacing: 0.1em;
+	text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 736px) {
+	#hero h2 {
+		font-size: 3em;
+	}
+	#hero p {
+		font-size: 1.1em;
+	}
+}
+
+/* ─── La Band — Members Grid ─── */
+
+.members-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2.5em;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.member {
+	text-align: center;
+}
+
+.member-photo {
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	margin: 0 auto 1em;
+	overflow: hidden;
+	border: 3px solid rgba(255, 255, 255, 0.2);
+	transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.member:hover .member-photo {
+	border-color: #D4A030;
+	transform: scale(1.05);
+}
+
+.member-photo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.member-photo.placeholder {
+	background: linear-gradient(135deg, #D4A030, #C0392B);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 3em;
+	font-weight: 900;
+	color: rgba(255, 255, 255, 0.9);
+	font-family: 'Playfair Display', serif;
+}
+
+.member h3 {
+	margin: 0 0 0.2em;
+	font-size: 1.3em;
+	color: #fff;
+}
+
+.member-role {
+	color: #D4A030;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	font-size: 0.85em;
+	margin: 0 0 0.5em;
+}
+
+.member-bio {
+	font-size: 0.9em;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (max-width: 1000px) {
+	.members-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.members-grid {
+		grid-template-columns: 1fr;
+	}
+	.member-photo {
+		width: 130px;
+		height: 130px;
+	}
+}
+
+/* ─── Video ─── */
+
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	max-width: 800px;
+	margin: 0 auto;
+	border-radius: 8px;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.video-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+/* ─── Repertorio ─── */
+
+#repertorio > .content {
+	width: 65em;
+}
+
+.repertorio-tabs {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	margin-bottom: 2em;
+}
+
+.repertorio-tabs .tab {
+	background: transparent;
+	border: 2px solid rgba(0, 0, 0, 0.15);
+	color: #1A1A2E;
+	padding: 0.5em 1.6em;
+	border-radius: 30px;
+	font-size: 0.85em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	line-height: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.4em;
+}
+
+.repertorio-tabs .tab:hover {
+	border-color: #D4A030;
+	color: #D4A030;
+	background: rgba(212, 160, 48, 0.08);
+}
+
+.repertorio-tabs .tab.active {
+	background: #D4A030;
+	border-color: #D4A030;
+	color: #fff;
+}
+
+.repertorio-search {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1em;
+	margin-bottom: 2em;
+}
+
+.repertorio-search input {
+	width: 300px;
+	padding: 0.5em 1em;
+	border: 2px solid rgba(0, 0, 0, 0.15);
+	border-radius: 30px;
+	font-size: 0.9em;
+	background: rgba(255, 255, 255, 0.8);
+	color: #1A1A2E;
+	outline: none;
+	transition: border-color 0.3s ease;
+}
+
+.repertorio-search input:focus {
+	border-color: #D4A030;
+}
+
+.repertorio-search input::placeholder {
+	color: #999;
+}
+
+.search-stat {
+	display: none;
+	font-size: 0.85em;
+	color: #888;
+	font-style: italic;
+}
+
+.repertorio-grid {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5em;
+}
+
+.repertorio-grid > * {
+	width: 100%;
+	max-width: 800px;
+}
+
+.repertorio-category {
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	padding: 1.5em;
+	border-left: 4px solid #D4A030;
+}
+
+.repertorio-category[data-category="soft"] {
+	border-left-color: #D4A030;
+}
+
+.repertorio-category[data-category="upbeat"] {
+	border-left-color: #C0392B;
+}
+
+.repertorio-category[data-category="italiano"] {
+	border-left-color: #2E7D32;
+}
+
+.repertorio-category[data-category="strumentali"] {
+	border-left-color: #5C6BC0;
+}
+
+.category-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1em;
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.category-header h3 {
+	margin: 0;
+	font-size: 1.2em;
+	color: #1A1A2E;
+}
+
+.song-count {
+	display: none;
+}
+
+.song-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.song-list li {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding: 0.35em 0;
+	border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
+}
+
+.song-list li:last-child {
+	border-bottom: none;
+}
+
+.song-title {
+	font-weight: 900;
+	color: #1A1A2E;
+	font-size: 0.9em;
+}
+
+.song-artist {
+	color: #888;
+	font-style: italic;
+	font-size: 0.85em;
+	text-align: right;
+	flex-shrink: 0;
+	margin-left: 1em;
+}
+
+.spotify-embed {
+	max-width: 800px;
+	margin: 0 auto 2.5em;
+}
+
+.spotify-embed h3 {
+	color: #1A1A2E;
+	font-size: 1.1em;
+	margin-bottom: 1em;
+}
+
+.spotify-embed iframe {
+	border-radius: 12px;
+}
+
+.repertorio-footer {
+	text-align: center;
+	font-size: 1.3em;
+	font-style: italic;
+	color: #C0392B;
+	margin-top: 1.5em;
+	font-weight: 700;
+}
+
+.repertorio-all {
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	padding: 1.5em;
+}
+
+.song-list-all {
+	column-count: 2;
+	column-gap: 3em;
+}
+
+.song-list-all li {
+	break-inside: avoid;
+}
+
+@media screen and (max-width: 1000px) {
+	.repertorio-grid {
+		grid-template-columns: 1fr;
+	}
+	.song-list-all {
+		column-count: 1;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.repertorio-tabs .tab {
+		padding: 0.4em 1em;
+		font-size: 0.8em;
+	}
+	.song-title,
+	.song-artist {
+		font-size: 0.8em;
+	}
+}
+
+/* ─── Contatti ─── */
+
+.contact-info {
+	margin-bottom: 2em;
+	text-align: center;
+}
+
+.contact-info .icons {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1.5em;
+}
+
+.contact-info .icons li {
+	font-size: 1em;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-info .icons li .icon {
+	margin-right: 0.4em;
+	color: #D4A030;
+}
+
+/* ─── Footer Spotify icon color ─── */
+
+#footer .icons .fa-spotify {
+	color: #1DB954;
+}
