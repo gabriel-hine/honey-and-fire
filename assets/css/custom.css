@@ -248,6 +248,10 @@
 	border-left-color: #2E7D32;
 }
 
+.repertorio-category[data-category="rock"] {
+	border-left-color: #6A1B9A;
+}
+
 .repertorio-category[data-category="strumentali"] {
 	border-left-color: #5C6BC0;
 }
