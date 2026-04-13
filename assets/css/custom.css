@@ -150,13 +150,24 @@
 .member-photo {
 	width: 160px;
 	height: 160px;
+	min-height: 160px;
+	max-height: 160px;
 	box-sizing: border-box;
 	border-radius: 50%;
 	margin: 0 0 1em;
 	overflow: hidden;
-	border: 3px solid rgba(255, 255, 255, 0.2);
+	border: 3px solid rgba(0, 0, 0, 0.1);
 	transition: border-color 0.3s ease, transform 0.3s ease;
 	flex: none;
+	position: relative;
+}
+
+.member-photo > * {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .member:hover .member-photo {
