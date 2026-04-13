@@ -4,6 +4,94 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap');
 
+/* ─── Mobile hamburger menu ─── */
+
+#menu-toggle {
+	display: none;
+	background: transparent;
+	border: 0;
+	padding: 0;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	position: relative;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+}
+
+#menu-toggle span {
+	display: block;
+	width: 24px;
+	height: 2px;
+	background: #1A1A2E;
+	transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+#menu-toggle.open span:nth-child(1) {
+	transform: translateY(7px) rotate(45deg);
+}
+
+#menu-toggle.open span:nth-child(2) {
+	opacity: 0;
+}
+
+#menu-toggle.open span:nth-child(3) {
+	transform: translateY(-7px) rotate(-45deg);
+}
+
+@media screen and (max-width: 736px) {
+	#header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	#menu-toggle {
+		display: flex;
+	}
+
+	#header nav {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background: #fff;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+		padding: 0.5em 0;
+	}
+
+	#header nav.open {
+		display: block;
+	}
+
+	#header nav ul {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	#header nav ul li {
+		display: block;
+		width: 100%;
+	}
+
+	#header nav ul li a {
+		display: block;
+		padding: 0.8em 1.5em;
+		color: #1A1A2E;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	}
+
+	#header nav ul li:last-child a {
+		border-bottom: none;
+	}
+}
+
 /* ─── Chi Siamo — wider content box ─── */
 
 @media screen and (min-width: 737px) {

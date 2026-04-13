@@ -67,6 +67,20 @@ $(function() {
 	// Search input
 	$('#repertorio-search').on('input', applyFilter);
 
+	// Mobile hamburger menu toggle
+	var $menuToggle = $('#menu-toggle');
+	var $headerNav = $('#header nav');
+	$menuToggle.on('click', function() {
+		var open = $menuToggle.toggleClass('open').hasClass('open');
+		$headerNav.toggleClass('open', open);
+		$menuToggle.attr('aria-expanded', open ? 'true' : 'false');
+	});
+	// Close menu when a nav link is clicked
+	$headerNav.find('a').on('click', function() {
+		$menuToggle.removeClass('open').attr('aria-expanded', 'false');
+		$headerNav.removeClass('open');
+	});
+
 	// Member photo placeholders — insert initials
 	$('.member-photo.placeholder').each(function() {
 		var initial = $(this).data('initial');
