@@ -1,90 +1,83 @@
 /*
 	Honey & Fire — Custom JS
-	Repertoire tab switching + search
+	Multi-select repertoire tabs + search
 */
 
 (function($) {
 
-	var activeTab = 'all';
+	var $tabs = $('.repertorio-tabs .tab');
+	var $songs = $('.repertorio-all .song-list-all li');
+	var $stat = $('.search-stat');
 
-	// Repertoire tabs
-	$('.repertorio-tabs .tab').on('click', function() {
-		activeTab = $(this).data('category');
+	function getActiveCategories() {
+		var cats = [];
+		$tabs.filter('.active').each(function() {
+			var c = $(this).data('category');
+			if (c !== 'all') cats.push(c);
+		});
+		return cats;
+	}
 
-		$('.repertorio-tabs .tab').removeClass('active');
-		$(this).addClass('active');
+	function applyFilter() {
+		var query = ($('#repertorio-search').val() || '').toLowerCase().trim();
+		var activeCats = getActiveCategories();
+		var allMode = activeCats.length === 0;
 
-		// Clear search when switching tabs
-		$('#repertorio-search').val('');
+		var visibleCount = 0;
+		$songs.each(function() {
+			var $song = $(this);
+			var songCats = ($song.data('categories') || '').toString().split(' ');
+			var title = $song.find('.song-title').text().toLowerCase();
+			var artist = $song.find('.song-artist').text().toLowerCase();
 
-		if (activeTab === 'all') {
-			$('.repertorio-category').hide();
-			$('.repertorio-all').show();
-			$('.repertorio-all .song-list li').show();
-		} else {
-			$('.repertorio-all').hide();
-			$('.repertorio-category').hide();
-			$('.repertorio-category[data-category="' + activeTab + '"]').show();
-			$('.repertorio-category .song-list li').show();
-		}
+			var catMatch = allMode || activeCats.some(function(c) {
+				return songCats.indexOf(c) !== -1;
+			});
+			var queryMatch = !query ||
+				title.indexOf(query) !== -1 ||
+				artist.indexOf(query) !== -1;
 
-		$('.search-stat').hide();
-	});
-
-	// Build the "all" unified list from individual categories
-	var $grid = $('.repertorio-grid');
-	var allSongs = [];
-	$('.repertorio-category .song-list li').each(function() {
-		allSongs.push($(this).clone());
-	});
-
-	var $allDiv = $('<div class="repertorio-all"><ul class="song-list song-list-all"></ul></div>');
-	var $allList = $allDiv.find('.song-list');
-	$.each(allSongs, function(i, $li) {
-		$allList.append($li);
-	});
-	$grid.prepend($allDiv);
-
-	// Hide individual categories by default (start with "Tutti")
-	$('.repertorio-category').hide();
-
-	// Search
-	$('#repertorio-search').on('input', function() {
-		var query = $(this).val().toLowerCase().trim();
-		var $stat = $('.search-stat');
-
-		if (!query) {
-			// Show all, restore tab view
-			$('.repertorio-tabs .tab.active').trigger('click');
-			$stat.hide();
-			return;
-		}
-
-		// When searching, show all songs in flat list
-		$('.repertorio-category').hide();
-		$('.repertorio-all').show();
-
-		var count = 0;
-		$('.repertorio-all .song-list li').each(function() {
-			var title = $(this).find('.song-title').text().toLowerCase();
-			var artist = $(this).find('.song-artist').text().toLowerCase();
-			if (title.indexOf(query) !== -1 || artist.indexOf(query) !== -1) {
-				$(this).show();
-				count++;
+			if (catMatch && queryMatch) {
+				$song.show();
+				visibleCount++;
 			} else {
-				$(this).hide();
+				$song.hide();
 			}
 		});
 
-		$stat.text(count + ' risultat' + (count === 1 ? 'o' : 'i')).show();
+		// Show stat only when filtering
+		if (query || activeCats.length > 0) {
+			$stat.text(visibleCount + ' brani').show();
+		} else {
+			$stat.hide();
+		}
+	}
+
+	// Tab clicks (multi-select toggle, except "Tutti" which clears all)
+	$tabs.on('click', function() {
+		var $this = $(this);
+		var cat = $this.data('category');
+
+		if (cat === 'all') {
+			$tabs.removeClass('active');
+			$this.addClass('active');
+		} else {
+			// Toggle this category
+			$this.toggleClass('active');
+			// Remove "Tutti" if any specific category is active
+			var anyActive = $tabs.filter('.active').not('[data-category="all"]').length > 0;
+			if (anyActive) {
+				$tabs.filter('[data-category="all"]').removeClass('active');
+			} else {
+				// No specific category active → activate "Tutti"
+				$tabs.filter('[data-category="all"]').addClass('active');
+			}
+		}
+		applyFilter();
 	});
 
-	// Clear search
-	$('#repertorio-clear').on('click', function() {
-		$('#repertorio-search').val('');
-		$('.search-stat').hide();
-		$('.repertorio-tabs .tab.active').trigger('click');
-	});
+	// Search input
+	$('#repertorio-search').on('input', applyFilter);
 
 	// Member photo placeholders — insert initials
 	$('.member-photo.placeholder').each(function() {
