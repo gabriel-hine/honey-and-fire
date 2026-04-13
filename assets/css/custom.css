@@ -181,7 +181,12 @@
 	margin: 0 0 0.2em;
 	font-size: 1.3em;
 	color: #1A1A2E;
+	line-height: 1.4em;
 	min-height: 1.4em;
+}
+
+.member h3:empty::before {
+	content: "\00a0";
 }
 
 .member-role {
