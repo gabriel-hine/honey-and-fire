@@ -1,78 +1,67 @@
 /*
 	Honey & Fire — Custom JS
-	Multi-select repertoire tabs + search
+	Single-select repertoire tabs + search
 */
 
 (function($) {
 
 	var $tabs = $('.repertorio-tabs .tab');
-	var $songs = $('.repertorio-all .song-list-all li');
+	var $allDiv = $('.repertorio-all');
+	var $categoryDivs = $('.repertorio-category');
 	var $stat = $('.search-stat');
 
-	function getActiveCategories() {
-		var cats = [];
-		$tabs.filter('.active').each(function() {
-			var c = $(this).data('category');
-			if (c !== 'all') cats.push(c);
-		});
-		return cats;
+	// Hide all category folders by default
+	$categoryDivs.hide();
+
+	function getActiveCategory() {
+		var $active = $tabs.filter('.active').first();
+		return $active.length ? $active.data('category') : 'all';
 	}
 
 	function applyFilter() {
 		var query = ($('#repertorio-search').val() || '').toLowerCase().trim();
-		var activeCats = getActiveCategories();
-		var allMode = activeCats.length === 0;
+		var cat = getActiveCategory();
+
+		// Show only the relevant container
+		if (cat === 'all') {
+			$allDiv.show();
+			$categoryDivs.hide();
+		} else {
+			$allDiv.hide();
+			$categoryDivs.hide();
+			$categoryDivs.filter('[data-category="' + cat + '"]').show();
+		}
+
+		// Apply search filter to visible songs
+		var $visibleList = (cat === 'all')
+			? $allDiv.find('.song-list li')
+			: $categoryDivs.filter('[data-category="' + cat + '"]').find('.song-list li');
 
 		var visibleCount = 0;
-		$songs.each(function() {
-			var $song = $(this);
-			var songCats = ($song.data('categories') || '').toString().split(' ');
-			var title = $song.find('.song-title').text().toLowerCase();
-			var artist = $song.find('.song-artist').text().toLowerCase();
-
-			var catMatch = allMode || activeCats.some(function(c) {
-				return songCats.indexOf(c) !== -1;
-			});
-			var queryMatch = !query ||
-				title.indexOf(query) !== -1 ||
-				artist.indexOf(query) !== -1;
-
-			if (catMatch && queryMatch) {
-				$song.show();
+		$visibleList.each(function() {
+			var $li = $(this);
+			var title = $li.find('.song-title').text().toLowerCase();
+			var artist = $li.find('.song-artist').text().toLowerCase();
+			var match = !query || title.indexOf(query) !== -1 || artist.indexOf(query) !== -1;
+			if (match) {
+				$li.show();
 				visibleCount++;
 			} else {
-				$song.hide();
+				$li.hide();
 			}
 		});
 
-		// Show stat only when filtering
-		if (query || activeCats.length > 0) {
+		if (query) {
 			$stat.text(visibleCount + ' brani').show();
 		} else {
 			$stat.hide();
 		}
 	}
 
-	// Tab clicks (multi-select toggle, except "Tutti" which clears all)
+	// Single-select tab clicks
 	$tabs.on('click', function() {
-		var $this = $(this);
-		var cat = $this.data('category');
-
-		if (cat === 'all') {
-			$tabs.removeClass('active');
-			$this.addClass('active');
-		} else {
-			// Toggle this category
-			$this.toggleClass('active');
-			// Remove "Tutti" if any specific category is active
-			var anyActive = $tabs.filter('.active').not('[data-category="all"]').length > 0;
-			if (anyActive) {
-				$tabs.filter('[data-category="all"]').removeClass('active');
-			} else {
-				// No specific category active → activate "Tutti"
-				$tabs.filter('[data-category="all"]').addClass('active');
-			}
-		}
+		$tabs.removeClass('active');
+		$(this).addClass('active');
 		applyFilter();
 	});
 
