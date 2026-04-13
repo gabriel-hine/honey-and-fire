@@ -81,14 +81,6 @@ $(function() {
 		$headerNav.removeClass('open');
 	});
 
-	// Member photo placeholders — insert initials inside an absolute span
-	$('.member-photo.placeholder').each(function() {
-		var initial = $(this).data('initial');
-		if (initial) {
-			$(this).html('<span class="initial">' + initial + '</span>');
-		}
-	});
-
 });
 
 })(jQuery);
