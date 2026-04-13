@@ -95,6 +95,45 @@
 	}
 }
 
+/* ─── Galleria — masonry layout for mixed aspect ratios ─── */
+
+.gallery {
+	display: block !important;
+	column-count: 3;
+	column-gap: 0.8em;
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto 2em;
+}
+
+.gallery article {
+	display: block;
+	width: 100% !important;
+	break-inside: avoid;
+	margin: 0 0 0.8em;
+	page-break-inside: avoid;
+}
+
+.gallery article .image,
+.gallery article img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 4px;
+}
+
+@media screen and (max-width: 1000px) {
+	.gallery {
+		column-count: 2;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.gallery {
+		column-count: 1;
+	}
+}
+
 /* ─── Chi Siamo — wider content box ─── */
 
 @media screen and (min-width: 737px) {
