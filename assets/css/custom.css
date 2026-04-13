@@ -184,6 +184,9 @@
 
 .member-photo.placeholder {
 	background: linear-gradient(135deg, #D4A030, #C0392B);
+}
+
+.member-photo.placeholder .initial {
 	display: flex;
 	align-items: center;
 	justify-content: center;
