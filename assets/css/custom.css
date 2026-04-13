@@ -318,6 +318,10 @@
 	margin-left: 1em;
 }
 
+.song-artist .emoji {
+	font-style: normal;
+}
+
 .spotify-embed {
 	max-width: 800px;
 	margin: 0 auto 2.5em;
