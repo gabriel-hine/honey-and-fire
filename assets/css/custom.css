@@ -58,13 +58,16 @@
 		top: 100%;
 		left: 0;
 		right: 0;
+		height: auto;
+		line-height: 1.5;
 		background: #fff;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 		padding: 0.5em 0;
+		z-index: 10001;
 	}
 
 	#header nav.open {
-		display: block;
+		display: block !important;
 	}
 
 	#header nav ul {
