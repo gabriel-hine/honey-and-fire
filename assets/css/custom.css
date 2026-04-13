@@ -234,6 +234,7 @@
 	border-radius: 10px;
 	padding: 1.5em;
 	border-left: 4px solid #D4A030;
+	display: none;
 }
 
 .repertorio-category[data-category="soft"] {

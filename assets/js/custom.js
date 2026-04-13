@@ -5,13 +5,12 @@
 
 (function($) {
 
+$(function() {
+
 	var $tabs = $('.repertorio-tabs .tab');
 	var $allDiv = $('.repertorio-all');
 	var $categoryDivs = $('.repertorio-category');
 	var $stat = $('.search-stat');
-
-	// Hide all category folders by default
-	$categoryDivs.hide();
 
 	function getActiveCategory() {
 		var $active = $tabs.filter('.active').first();
@@ -75,5 +74,7 @@
 			$(this).text(initial);
 		}
 	});
+
+});
 
 })(jQuery);
