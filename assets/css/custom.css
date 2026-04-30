@@ -475,6 +475,9 @@
 	font-weight: 900;
 	color: #1A1A2E;
 	font-size: 0.9em;
+	flex: 1;
+	min-width: 0;
+	text-align: left;
 }
 
 .song-artist {
