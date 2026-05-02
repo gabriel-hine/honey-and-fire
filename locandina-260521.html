@@ -24,63 +24,53 @@
     width: 794px;
     height: 1123px;
     overflow: hidden;
-    background: #100c08;
+    background: #0a0602;
     flex-shrink: 0;
   }
 
-  /* Split photo background: Honey (left) · Fire (right) */
-  .bg-split {
+  /* Singer portrait photos */
+  .singers {
     position: absolute;
-    inset: 0;
+    top: 120px;
+    left: 0;
+    right: 0;
+    z-index: 3;
     display: flex;
-    z-index: 0;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 58px;
   }
-  .bg-honey {
-    width: 50%;
-    height: 100%;
-    background: url('images/fulls/08.jpg') center top / auto 52% no-repeat;
+  .singer-photo {
+    width: 310px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 3px solid #e8a030;
+    box-shadow:
+      0 0 0 1px rgba(232,160,48,0.15),
+      0 8px 40px rgba(0,0,0,0.9),
+      0 2px 12px rgba(0,0,0,0.6);
+    display: block;
+    flex-shrink: 0;
   }
-  .bg-fire {
-    width: 50%;
-    height: 100%;
-    background: url('images/fulls/09.jpg') center top / auto 52% no-repeat;
-    transform: scaleX(-1);
-  }
-  /* Dark seam blend between the two halves */
-  .bg-blend {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to right,
-      transparent 28%,
-      rgba(10,6,2,0.75) 50%,
-      transparent 72%
-    );
-    z-index: 1;
-  }
+  .singer-honey { object-position: center 12%; }
+  .singer-fire  { object-position: center 18%; transform: scaleX(-1); }
 
-  /* Gradient overlay — heavier at bottom for text legibility */
+  /* Bottom fade for text legibility */
   .overlay {
     position: absolute;
-    inset: 0;
-    z-index: 1;
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(10,6,2,0.35) 0%,
-        rgba(10,6,2,0.20) 30%,
-        rgba(10,6,2,0.55) 55%,
-        rgba(10,6,2,0.92) 72%,
-        rgba(10,6,2,0.98) 100%
-      );
-  }
-
-  /* Warm vignette edges */
-  .vignette {
-    position: absolute;
-    inset: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 58%;
     z-index: 2;
-    background: radial-gradient(ellipse at center, transparent 50%, rgba(5,3,1,0.6) 100%);
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(10,6,2,0.7) 25%,
+      rgba(10,6,2,0.97) 55%,
+      #0a0602 100%
+    );
   }
 
   /* All content above overlays */
@@ -355,16 +345,14 @@
 <body>
 <div class="poster">
 
-  <!-- Split background: Honey (left) · Fire (right) -->
-  <div class="bg-split">
-    <div class="bg-honey"></div>
-    <div class="bg-fire"></div>
+  <!-- Singer portraits -->
+  <div class="singers">
+    <img class="singer-photo singer-honey" src="images/fulls/08.jpg" alt="Honey – Francesca" />
+    <img class="singer-photo singer-fire"  src="images/fulls/09.jpg" alt="Fire – Giorgia" />
   </div>
-  <div class="bg-blend"></div>
 
-  <!-- Overlays -->
+  <!-- Bottom fade -->
   <div class="overlay"></div>
-  <div class="vignette"></div>
 
   <!-- Top badge -->
   <div class="top-badge">
