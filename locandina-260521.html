@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<title>Honey & Fire — Live @ Pub Clown, 21 Maggio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  /* A4 at 96dpi = 794 × 1123px */
+  .poster {
+    position: relative;
+    width: 794px;
+    height: 1123px;
+    overflow: hidden;
+    background: #100c08;
+    flex-shrink: 0;
+  }
+
+  /* Split photo background: Honey (left) · Fire (right) */
+  .bg-split {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 0;
+  }
+  .bg-honey {
+    width: 50%;
+    height: 100%;
+    background: url('images/fulls/08.jpg') center top / auto 52% no-repeat;
+  }
+  .bg-fire {
+    width: 50%;
+    height: 100%;
+    background: url('images/fulls/09.jpg') center top / auto 52% no-repeat;
+    transform: scaleX(-1);
+  }
+  /* Dark seam blend between the two halves */
+  .bg-blend {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      transparent 28%,
+      rgba(10,6,2,0.75) 50%,
+      transparent 72%
+    );
+    z-index: 1;
+  }
+
+  /* Gradient overlay — heavier at bottom for text legibility */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(10,6,2,0.35) 0%,
+        rgba(10,6,2,0.20) 30%,
+        rgba(10,6,2,0.55) 55%,
+        rgba(10,6,2,0.92) 72%,
+        rgba(10,6,2,0.98) 100%
+      );
+  }
+
+  /* Warm vignette edges */
+  .vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(5,3,1,0.6) 100%);
+  }
+
+  /* All content above overlays */
+  .content {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 52px 36px;
+    text-align: center;
+    color: #f5edd5;
+  }
+
+  /* Top badge */
+  .top-badge {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+  }
+  .top-badge span {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #e8a030;
+    border: 1px solid rgba(232,160,48,0.5);
+    padding: 5px 18px;
+    border-radius: 2px;
+  }
+
+  /* Band name */
+  .band-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 82px;
+    line-height: 0.95;
+    letter-spacing: -1px;
+    color: #f5edd5;
+    text-shadow:
+      0 0 60px rgba(232,140,20,0.4),
+      0 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 8px;
+  }
+  .band-name .amp {
+    color: #e8841a;
+    font-style: italic;
+  }
+  .band-name .fire {
+    color: #f0a040;
+  }
+  .band-name .fire-icon {
+    font-size: 0.72em;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 8px rgba(255,120,20,0.7));
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 12px 0 18px;
+    width: 100%;
+    max-width: 480px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(232,140,20,0.7), transparent);
+  }
+  .divider-icon {
+    font-size: 18px;
+    opacity: 0.9;
+  }
+
+  /* "LIVE" tag */
+  .live-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.6);
+    margin-top: 14px;
+    margin-bottom: 28px;
+  }
+
+  /* Date */
+  .date-block {
+    margin-bottom: 6px;
+  }
+  .date-day {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.6);
+    line-height: 1;
+  }
+  .date-main {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 16px;
+  }
+  .date-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 1;
+    color: #f5edd5;
+    text-shadow: 0 0 40px rgba(232,140,20,0.3);
+    letter-spacing: -2px;
+  }
+  .date-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 5px;
+    height: 72px;
+  }
+  .date-month {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #e8a030;
+    line-height: 1;
+  }
+  .date-time {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.55);
+    margin-top: 8px;
+  }
+
+  /* Thin separator */
+  .sep {
+    width: 60px;
+    height: 1px;
+    background: rgba(232,140,20,0.5);
+    margin: 22px auto;
+  }
+
+  /* Venue */
+  .venue-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f5edd5;
+    margin-bottom: 6px;
+  }
+  .venue-address {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.6);
+    margin-bottom: 24px;
+  }
+
+  /* WhatsApp contact */
+  .contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+  .wa-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+  .contact-text {
+    text-align: left;
+  }
+  .contact-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.5);
+    line-height: 1.2;
+  }
+  .contact-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #f5edd5;
+    line-height: 1.2;
+  }
+
+  /* Venue logo — bottom right */
+  .venue-logo {
+    position: absolute;
+    bottom: 30px;
+    right: 36px;
+    z-index: 20;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0.88;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,0.7));
+  }
+
+  /* Jam session badge — bottom left */
+  .jam-badge {
+    position: absolute;
+    bottom: 36px;
+    left: 36px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .jam-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid rgba(232,140,20,0.6);
+    filter: brightness(0.85) saturate(0.9);
+  }
+  .jam-text {
+    text-align: left;
+  }
+  .jam-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.45);
+    line-height: 1.3;
+  }
+  .jam-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgba(245,237,213,0.75);
+    line-height: 1.3;
+  }
+
+  @media print {
+    body { padding: 0; background: white; }
+    .poster { page-break-after: avoid; }
+    @page { size: A4 portrait; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- Split background: Honey (left) · Fire (right) -->
+  <div class="bg-split">
+    <div class="bg-honey"></div>
+    <div class="bg-fire"></div>
+  </div>
+  <div class="bg-blend"></div>
+
+  <!-- Overlays -->
+  <div class="overlay"></div>
+  <div class="vignette"></div>
+
+  <!-- Top badge -->
+  <div class="top-badge">
+    <span>Una serata con</span>
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+
+    <div class="band-name">
+      Honey <span class="amp">&amp;</span> <span class="fire">Fire</span>
+    </div>
+
+    <div class="live-tag">Pop &nbsp;·&nbsp; Soul &nbsp;·&nbsp; Funk</div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-icon">🍯</span>
+      <span class="divider-icon">🔥</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="date-block">
+      <div class="date-main">
+        <span class="date-number">21</span>
+        <div class="date-stack">
+          <span class="date-day">Giovedì</span>
+          <span class="date-month">Maggio</span>
+        </div>
+      </div>
+      <div class="date-time">ore 20.00</div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="venue-name">Pub Clown</div>
+    <div class="venue-address">Via Litoranea 24 &nbsp;·&nbsp; Ostia (RM)</div>
+
+    <div class="contact">
+      <!-- WhatsApp SVG icon -->
+      <svg class="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="16" fill="#25D366"/>
+        <path fill="#fff" d="M23.5 8.5A10.44 10.44 0 0016.01 5.5C10.76 5.5 6.5 9.76 6.5 15.01c0 1.68.44 3.32 1.28 4.76L6.5 25.5l5.87-1.54a10.47 10.47 0 004.64 1.09h.01c5.25 0 9.51-4.26 9.51-9.51A9.46 9.46 0 0023.5 8.5zm-7.49 14.63h-.01c-1.42 0-2.82-.38-4.04-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.62 8.62 0 01-1.32-4.59c0-4.77 3.88-8.65 8.65-8.65a8.6 8.6 0 016.12 2.54 8.6 8.6 0 012.53 6.13c-.01 4.77-3.89 8.3-8.23 8.3zm4.74-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44l-.5-.01c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.76 4.38 3.87.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.51-.62 1.72-1.22.21-.6.21-1.11.15-1.22-.07-.1-.24-.16-.5-.29z"/>
+      </svg>
+      <div class="contact-text">
+        <div class="contact-label">Info e prenotazioni</div>
+        <div class="contact-number">339 860 9330</div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- Jam session badge — bottom left -->
+  <div class="jam-badge">
+    <img class="jam-img"
+         src="images/grande_giove.png"
+         alt="Grande Giove" />
+    <div class="jam-text">
+      <div class="jam-label">a seguire</div>
+      <div class="jam-title">Jam Session</div>
+    </div>
+  </div>
+
+  <!-- Pub Clown logo — bottom right -->
+  <img class="venue-logo" src="images/pub_clown_logo.png" alt="Il Clown Pub" />
+
+</div><!-- /poster -->
+</body>
+</html>
