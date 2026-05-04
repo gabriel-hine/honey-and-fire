@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<title>Honey & Fire — Instagram (1080×1350)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1D0D00;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  /* IG feed-post 4:5 — 1080×1350 native, viewable at any scaling. */
+  .poster {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: #1D0D00;
+    color: #f5edd5;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  /* Top badge */
+  .top-badge {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .top-badge span {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #e8a030;
+    border: 1px solid rgba(232,160,48,0.5);
+    padding: 8px 24px;
+    border-radius: 2px;
+  }
+
+  /* Layout uses absolute positioning with explicit line-heights so the
+     rendered geometry matches the design coords (otherwise inherited
+     line-heights of ~1.4 push elements well past the canvas edge). */
+
+  /* Singer portraits */
+  .singers {
+    position: absolute;
+    top: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 26px;
+  }
+  .singer {
+    width: 360px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 4px solid #e8a030;
+    display: block;
+  }
+  .singer-honey { object-position: center 12%; }
+  .singer-fire  { object-position: center 18%; transform: scaleX(-1); }
+
+  /* Band name */
+  .band-name {
+    position: absolute;
+    top: 600px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 130px;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: #f5edd5;
+  }
+  .band-name .amp { color: #e8841a; font-style: italic; }
+  .band-name .fire { color: #f0a040; }
+
+  .tagline {
+    position: absolute;
+    top: 770px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 14px;
+    color: rgba(245,237,213,0.6);
+  }
+
+  /* Hexagon divider */
+  .divider {
+    position: absolute;
+    top: 820px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 540px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(232,140,20,0.8), transparent);
+  }
+  .divider-logo {
+    width: 90px;
+    height: 90px;
+    display: block;
+  }
+
+  /* Date */
+  .date-block {
+    position: absolute;
+    top: 950px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .date-day {
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.6);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .date-main {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    line-height: 1;
+  }
+  .date-number {
+    font-weight: 700;
+    font-size: 120px;
+    line-height: 1;
+    color: #f5edd5;
+    letter-spacing: -3px;
+  }
+  .date-month {
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #e8a030;
+  }
+  .date-time {
+    margin-top: 16px;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.6);
+  }
+
+  /* Venue */
+  .venue {
+    position: absolute;
+    top: 1170px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .venue-name {
+    font-size: 52px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #f5edd5;
+  }
+  .venue-address {
+    margin-top: 14px;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.7);
+  }
+
+  /* IG handle at the very bottom — replaces the QRs for in-feed context. */
+  .handle {
+    position: absolute;
+    top: 1290px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(232,160,48,0.85);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="top-badge"><span>Una serata con</span></div>
+
+  <div class="singers">
+    <img class="singer singer-honey" src="images/fulls/08.jpg?v=58dfdee" alt="Honey – Francesca" />
+    <img class="singer singer-fire"  src="images/fulls/09.jpg?v=58dfdee" alt="Fire – Giorgia" />
+  </div>
+
+  <h1 class="band-name">Honey <span class="amp">&amp;</span> <span class="fire">Fire</span></h1>
+
+  <div class="tagline">Pop &nbsp;·&nbsp; Soul &nbsp;·&nbsp; Funk</div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <img class="divider-logo" src="logo-dark.svg" alt="Honey & Fire" />
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="date-block">
+    <span class="date-day">Giovedì</span>
+    <div class="date-main">
+      <span class="date-number">21</span>
+      <span class="date-month">Maggio</span>
+    </div>
+    <div class="date-time">ore 20.00</div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-name">Pub Clown</div>
+    <div class="venue-address">Via Litoranea 24 &middot; Ostia (RM)</div>
+  </div>
+
+  <div class="handle">@honeyandfire_band</div>
+
+</div>
+</body>
+</html>
