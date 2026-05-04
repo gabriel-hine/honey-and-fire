@@ -266,9 +266,12 @@ function render() {
   document.getElementById("custom-grid").innerHTML =
     specials.map(s => buildSpecialCard(s, false)).join("") +
     specials.map(s => buildSpecialCard(s, true)).join("");
-  document.getElementById("lower-light").innerHTML = fonts.map(f => buildCard(f, "lower", false)).join("");
+  // Lowercase exploration is narrowed to the two finalists.
+  const lowerPicks = ["Great Vibes", "Tangerine"];
+  const lowerFonts = fonts.filter(f => lowerPicks.includes(f.name));
+  document.getElementById("lower-light").innerHTML = lowerFonts.map(f => buildCard(f, "lower", false)).join("");
   document.getElementById("upper-light").innerHTML = fonts.map(f => buildCard(f, "upper", false)).join("");
-  document.getElementById("lower-dark").innerHTML  = fonts.filter(f => darkPicks.includes(f.name)).map(f => buildCard(f, "lower", true)).join("");
+  document.getElementById("lower-dark").innerHTML  = lowerFonts.map(f => buildCard(f, "lower", true)).join("");
   document.getElementById("upper-dark").innerHTML  = fonts.filter(f => darkPicks.includes(f.name)).map(f => buildCard(f, "upper", true)).join("");
 }
 
