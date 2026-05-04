@@ -28,6 +28,27 @@
     flex-shrink: 0;
   }
 
+  /* Print: dump the screen-only flex centring + viewport padding so the
+     poster sits flush in an A4 page. The poster is already sized to
+     A4@96dpi, and Chrome's --print-to-pdf preserves <a href> annotations,
+     so the QR / map / WhatsApp links stay clickable in the PDF. */
+  @media print {
+    @page { size: 210mm 297mm; margin: 0; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #1D0D00;
+    }
+    body {
+      display: block;
+      min-height: 0;
+    }
+    .poster {
+      margin: 0;
+      box-shadow: none;
+    }
+  }
+
   /* Singer portrait photos */
   .singers {
     position: absolute;
