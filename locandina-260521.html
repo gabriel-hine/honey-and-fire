@@ -12,10 +12,60 @@
   body {
     background: #1D0D00;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
     min-height: 100vh;
+  }
+
+  /* Screen-only CTA bar under the poster — gives mobile visitors big
+     tap targets instead of forcing them to scan their own screen for
+     the in-poster QRs. Hidden in @media print so the PDF stays clean. */
+  .cta-buttons {
+    width: 794px;
+    max-width: 100%;
+    margin: 24px auto 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Oswald', sans-serif;
+  }
+  .cta-buttons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 20px;
+    background: rgba(232,160,48,0.10);
+    border: 1px solid rgba(232,160,48,0.55);
+    border-radius: 4px;
+    color: #f5edd5;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cta-buttons a:hover {
+    background: rgba(232,160,48,0.22);
+    border-color: #e8a030;
+    color: #fff;
+  }
+  .cta-buttons a.cta-primary {
+    background: #25D366;
+    border-color: #25D366;
+    color: #fff;
+  }
+  .cta-buttons a.cta-primary:hover {
+    background: #1ebe5c;
+    border-color: #1ebe5c;
+  }
+  .cta-buttons svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
   }
 
   /* A4 at 96dpi = 794 × 1123px */
@@ -445,6 +495,7 @@
     .singer-photo {
       box-shadow: none;
     }
+    .cta-buttons { display: none; }
   }
 </style>
 </head>
@@ -531,6 +582,41 @@
   </div>
 
 </div><!-- /poster -->
+
+<!-- Screen-only CTAs (hidden in @media print). -->
+<nav class="cta-buttons" aria-label="Link rapidi">
+  <a href="https://www.instagram.com/honeyandfire_band" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2.16c3.2 0 3.58.012 4.85.07 1.17.054 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.058 1.27.07 1.65.07 4.85s-.012 3.58-.07 4.85c-.054 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.058-1.65.07-4.85.07s-3.58-.012-4.85-.07c-1.17-.054-1.8-.25-2.23-.41a3.71 3.71 0 0 1-1.38-.9 3.71 3.71 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.172 15.58 2.16 15.2 2.16 12s.012-3.58.07-4.85c.054-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.172 8.8 2.16 12 2.16zm0 1.62c-3.14 0-3.51.012-4.75.07-.97.045-1.5.21-1.85.34-.46.18-.79.4-1.14.74-.34.34-.56.68-.74 1.14-.13.35-.3.88-.34 1.85-.058 1.24-.07 1.61-.07 4.75s.012 3.51.07 4.75c.045.97.21 1.5.34 1.85.18.46.4.79.74 1.14.34.34.68.56 1.14.74.35.13.88.3 1.85.34 1.24.058 1.61.07 4.75.07s3.51-.012 4.75-.07c.97-.045 1.5-.21 1.85-.34.46-.18.79-.4 1.14-.74.34-.34.56-.68.74-1.14.13-.35.3-.88.34-1.85.058-1.24.07-1.61.07-4.75s-.012-3.51-.07-4.75c-.045-.97-.21-1.5-.34-1.85a3.07 3.07 0 0 0-.74-1.14 3.07 3.07 0 0 0-1.14-.74c-.35-.13-.88-.3-1.85-.34-1.24-.058-1.61-.07-4.75-.07zm0 2.76a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92zm0 1.62a3.84 3.84 0 1 0 0 7.68 3.84 3.84 0 0 0 0-7.68zm5.65-2.93a1.275 1.275 0 1 1 0 2.55 1.275 1.275 0 0 1 0-2.55z"/>
+    </svg>
+    Instagram
+  </a>
+  <a href="https://www.facebook.com/share/1Ax3o1t19K/?mibextid=wwXIfr" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+    </svg>
+    Facebook
+  </a>
+  <a href="https://www.honeyandfire.band/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3 12h18M12 3a14 14 0 0 1 4 9 14 14 0 0 1-4 9 14 14 0 0 1-4-9 14 14 0 0 1 4-9z"/>
+    </svg>
+    Sito Web
+  </a>
+  <a href="https://www.google.com/maps?q=Via+Litoranea+24,+00122+Roma+RM" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+    </svg>
+    Mappa
+  </a>
+  <a class="cta-primary" href="https://wa.me/393398609330" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M23.5 8.5A10.44 10.44 0 0 0 16.01 5.5C10.76 5.5 6.5 9.76 6.5 15.01c0 1.68.44 3.32 1.28 4.76L6.5 25.5l5.87-1.54a10.47 10.47 0 0 0 4.64 1.09h.01c5.25 0 9.51-4.26 9.51-9.51A9.46 9.46 0 0 0 23.5 8.5zm-7.49 14.63h-.01c-1.42 0-2.82-.38-4.04-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.62 8.62 0 0 1-1.32-4.59c0-4.77 3.88-8.65 8.65-8.65a8.6 8.6 0 0 1 6.12 2.54 8.6 8.6 0 0 1 2.53 6.13c-.01 4.77-3.89 8.3-8.23 8.3zm4.74-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44l-.5-.01c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.76 4.38 3.87.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.51-.62 1.72-1.22.21-.6.21-1.11.15-1.22-.07-.1-.24-.16-.5-.29z"/>
+    </svg>
+    Prenota
+  </a>
+</nav>
 
 <script>
   // Network-first for HTML so returning visitors aren't stuck on a stale
