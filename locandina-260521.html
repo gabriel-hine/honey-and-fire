@@ -113,7 +113,7 @@
     width: 150px;
     height: auto;
     display: block;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    /* background was recoloured to #1D0D00 so the QR blends with the poster */
   }
   .top-badge span {
     display: inline-block;
@@ -261,6 +261,7 @@
     margin-bottom: 6px;
   }
   .venue-address {
+    display: inline-block;
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
     font-size: 14px;
@@ -268,7 +269,10 @@
     text-transform: uppercase;
     color: rgba(245,237,213,0.6);
     margin-bottom: 24px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
   }
+  .venue-address:hover { color: #f5edd5; }
 
   /* WhatsApp contact */
   .contact {
@@ -307,18 +311,57 @@
     line-height: 1.2;
   }
 
-  /* Venue logo — bottom right */
-  .venue-logo {
+  /* Venue badge — bottom right: contact (label + WhatsApp number) + clown icon */
+  .venue-badge {
     position: absolute;
     bottom: 30px;
     right: 36px;
     z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .venue-contact {
+    text-decoration: none;
+    text-align: right;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .venue-info-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.7);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .venue-info-number {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: #f5edd5;
+    line-height: 1.2;
+  }
+  .venue-info-number .wa-icon-small {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .venue-logo {
     width: 64px;
     height: 64px;
     border-radius: 50%;
     object-fit: cover;
     opacity: 0.88;
     filter: drop-shadow(0 0 6px rgba(0,0,0,0.7));
+    flex-shrink: 0;
   }
 
   /* Jam session badge — bottom left */
@@ -372,8 +415,8 @@
 
   <!-- Singer portraits -->
   <div class="singers">
-    <img class="singer-photo singer-honey" src="images/fulls/08.jpg?v=2c5f3b1" alt="Honey – Francesca" />
-    <img class="singer-photo singer-fire"  src="images/fulls/09.jpg?v=2c5f3b1" alt="Fire – Giorgia" />
+    <img class="singer-photo singer-honey" src="images/fulls/08.jpg?v=08709f1" alt="Honey – Francesca" />
+    <img class="singer-photo singer-fire"  src="images/fulls/09.jpg?v=08709f1" alt="Fire – Giorgia" />
   </div>
 
   <!-- Bottom fade -->
@@ -395,13 +438,13 @@
 
     <div class="divider">
       <div class="divider-line"></div>
-      <img class="divider-logo" src="logo-dark.svg?v=2c5f3b1" alt="Honey & Fire" />
+      <img class="divider-logo" src="logo-dark.svg?v=08709f1" alt="Honey & Fire" />
       <div class="divider-line"></div>
     </div>
 
     <div class="date-block">
       <a class="qr-link" href="https://www.instagram.com/honeyandfire_band" target="_blank" rel="noopener">
-        <img class="qr-img" src="images/qr-instagram.jpg?v=2c5f3b1" alt="Instagram @honeyandfire_band" />
+        <img class="qr-img" src="images/qr-instagram.jpg?v=08709f1" alt="Instagram @honeyandfire_band" />
       </a>
       <div class="date-main">
         <span class="date-number">21</span>
@@ -416,26 +459,14 @@
     <div class="sep"></div>
 
     <div class="venue-name">Pub Clown</div>
-    <div class="venue-address">Via Litoranea 24 &nbsp;·&nbsp; Ostia (RM)</div>
-
-    <a class="contact" href="https://wa.me/393398609330" target="_blank" rel="noopener">
-      <!-- WhatsApp SVG icon -->
-      <svg class="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="16" fill="#25D366"/>
-        <path fill="#fff" d="M23.5 8.5A10.44 10.44 0 0016.01 5.5C10.76 5.5 6.5 9.76 6.5 15.01c0 1.68.44 3.32 1.28 4.76L6.5 25.5l5.87-1.54a10.47 10.47 0 004.64 1.09h.01c5.25 0 9.51-4.26 9.51-9.51A9.46 9.46 0 0023.5 8.5zm-7.49 14.63h-.01c-1.42 0-2.82-.38-4.04-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.62 8.62 0 01-1.32-4.59c0-4.77 3.88-8.65 8.65-8.65a8.6 8.6 0 016.12 2.54 8.6 8.6 0 012.53 6.13c-.01 4.77-3.89 8.3-8.23 8.3zm4.74-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44l-.5-.01c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.76 4.38 3.87.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.51-.62 1.72-1.22.21-.6.21-1.11.15-1.22-.07-.1-.24-.16-.5-.29z"/>
-      </svg>
-      <div class="contact-text">
-        <div class="contact-label">Info e prenotazioni</div>
-        <div class="contact-number">339 860 9330</div>
-      </div>
-    </a>
+    <a class="venue-address" href="https://www.google.com/maps?q=Via+Litoranea+24,+00122+Roma+RM" target="_blank" rel="noopener">Via Litoranea 24 &nbsp;·&nbsp; Ostia (RM)</a>
 
   </div><!-- /content -->
 
   <!-- Jam session badge — bottom left -->
   <div class="jam-badge">
     <img class="jam-img"
-         src="images/grande_giove.png?v=2c5f3b1"
+         src="images/grande_giove.png?v=08709f1"
          alt="Grande Giove" />
     <div class="jam-text">
       <div class="jam-label">a seguire</div>
@@ -443,8 +474,20 @@
     </div>
   </div>
 
-  <!-- Pub Clown logo — bottom right -->
-  <img class="venue-logo" src="images/pub_clown_logo.png?v=2c5f3b1" alt="Il Clown Pub" />
+  <!-- Pub Clown badge — bottom right: contact (label + WhatsApp number) + clown -->
+  <div class="venue-badge">
+    <a class="venue-contact" href="https://wa.me/393398609330" target="_blank" rel="noopener">
+      <div class="venue-info-label">Info e prenotazioni</div>
+      <div class="venue-info-number">
+        <svg class="wa-icon-small" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="#25D366"/>
+          <path fill="#fff" d="M23.5 8.5A10.44 10.44 0 0016.01 5.5C10.76 5.5 6.5 9.76 6.5 15.01c0 1.68.44 3.32 1.28 4.76L6.5 25.5l5.87-1.54a10.47 10.47 0 004.64 1.09h.01c5.25 0 9.51-4.26 9.51-9.51A9.46 9.46 0 0023.5 8.5zm-7.49 14.63h-.01c-1.42 0-2.82-.38-4.04-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.62 8.62 0 01-1.32-4.59c0-4.77 3.88-8.65 8.65-8.65a8.6 8.6 0 016.12 2.54 8.6 8.6 0 012.53 6.13c-.01 4.77-3.89 8.3-8.23 8.3zm4.74-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44l-.5-.01c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.76 4.38 3.87.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.51-.62 1.72-1.22.21-.6.21-1.11.15-1.22-.07-.1-.24-.16-.5-.29z"/>
+        </svg>
+        <span>339 860 9330</span>
+      </div>
+    </a>
+    <img class="venue-logo" src="images/pub_clown_logo.png?v=08709f1" alt="Il Clown Pub" />
+  </div>
 
 </div><!-- /poster -->
 </body>
