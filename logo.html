@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Honey & Fire — Logo Variants</title>
+<title>Honey & Fire — Logo Variants (Cursive)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tangerine:wght@400;700&family=Sacramento&family=Pinyon+Script&family=Allura&family=Parisienne&family=Italianno&family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:wght@400;500;600;700&family=Marcellus&family=Italiana&family=Playfair+Display:wght@400;700;900&family=Limelight&family=UnifrakturMaguntia&family=Pirata+One&family=Almendra:wght@400;700&family=Uncial+Antiqua&family=MedievalSharp&family=Berkshire+Swash&family=IM+Fell+English+SC&family=Cardo:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tangerine:wght@400;700&family=Sacramento&family=Pinyon+Script&family=Allura&family=Parisienne&family=Italianno&family=Berkshire+Swash&family=Alex+Brush&family=Mrs+Saint+Delafield&family=Mr+Dafoe&family=Mr+De+Haviland&family=Petit+Formal+Script&family=Herr+Von+Muellerhoff&family=Rouge+Script&family=Marck+Script&family=Niconne&family=Yellowtail&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet" />
 <style>
   body { margin: 0; background: #1a1a1a; color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 40px 20px; }
   h1 { text-align: center; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 8px; }
@@ -14,55 +14,139 @@
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 1400px; margin: 0 auto; }
   .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
   .card.dark { background: #1D0D00; }
-  .card .label { padding: 12px 16px; background: #f5f5f5; color: #333; font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; }
+  .card .label { padding: 12px 16px; background: #f5f5f5; color: #333; font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
   .card.dark .label { background: #0a0500; color: #f0f0f0; border-top: 1px solid rgba(191,160,48,0.2); }
   .label small { color: #888; font-weight: 400; font-size: 11px; }
   .svg-holder { display: flex; justify-content: center; align-items: center; padding: 0; }
   .current-tag { display: inline-block; background: #BFA030; color: #1D0D00; font-size: 10px; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.05em; font-weight: 600; }
+  .case-tag { display: inline-block; background: #333; color: #ccc; font-size: 10px; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.05em; font-weight: 600; }
+  .case-tag.upper { background: #BFA030; color: #1D0D00; }
 </style>
 </head>
 <body>
 
-<h1>Honey &amp; Fire — Logo Font Explorations</h1>
-<p class="subtitle">Same hexagon + flame mark, varied typography. Letters tuned per font.</p>
+<h1>Honey &amp; Fire — Cursive Font Explorations</h1>
+<p class="subtitle">Script and cursive faces only. Each shown as lowercase (h/f) and capital (H/F).</p>
 
-<div class="section-title">Light versions</div>
-<div class="grid" id="light-grid"></div>
+<div class="section-title">Lowercase — light</div>
+<div class="grid" id="lower-light"></div>
 
-<div class="section-title">Dark versions (selected fonts)</div>
-<div class="grid" id="dark-grid"></div>
+<div class="section-title">Capitals — light</div>
+<div class="grid" id="upper-light"></div>
+
+<div class="section-title">Lowercase — dark (curated)</div>
+<div class="grid" id="lower-dark"></div>
+
+<div class="section-title">Capitals — dark (curated)</div>
+<div class="grid" id="upper-dark"></div>
 
 <script>
-// Each variant tunes: font, size, y baseline, dx offsets, optional letterspacing, weight, casing, italic
-const variants = [
-  { name: "Great Vibes",        note: "current",   font: "'Great Vibes', cursive",            size: 118, y: 283, dxL: -30, dxR: 34, hL: "h", hR: "f" },
-  { name: "Tangerine",          note: "cursive",   font: "'Tangerine', cursive",              size: 165, y: 290, dxL: -28, dxR: 28, hL: "h", hR: "f", weight: 700 },
-  { name: "Sacramento",         note: "casual script", font: "'Sacramento', cursive",         size: 110, y: 280, dxL: -28, dxR: 28, hL: "h", hR: "f" },
-  { name: "Pinyon Script",      note: "cursive",   font: "'Pinyon Script', cursive",          size: 130, y: 285, dxL: -28, dxR: 28, hL: "h", hR: "f" },
-  { name: "Allura",             note: "cursive",   font: "'Allura', cursive",                 size: 130, y: 285, dxL: -30, dxR: 30, hL: "h", hR: "f" },
-  { name: "Parisienne",         note: "casual cursive", font: "'Parisienne', cursive",        size: 100, y: 282, dxL: -28, dxR: 28, hL: "h", hR: "f" },
-  { name: "Italianno",          note: "elegant cursive", font: "'Italianno', cursive",        size: 145, y: 290, dxL: -28, dxR: 28, hL: "h", hR: "f" },
-  { name: "Berkshire Swash",    note: "playful display", font: "'Berkshire Swash', cursive",  size: 100, y: 285, dxL: -36, dxR: 36, hL: "H", hR: "F" },
+// Cursive/script families only. Each entry has tuning for lowercase (lc.*) and capitals (uc.*).
+// Lowercase fonts often need bigger size + descender room; capitals are usually wider with flourishes.
+const fonts = [
+  { name: "Great Vibes",          note: "current",
+    font: "'Great Vibes', cursive",
+    lc: { size: 118, y: 283, dxL: -30, dxR: 34 },
+    uc: { size: 118, y: 285, dxL: -42, dxR: 42 } },
 
-  { name: "Cinzel",             note: "roman serif",   font: "'Cinzel', serif",               size: 86,  y: 280, dxL: -32, dxR: 32, hL: "H", hR: "F", weight: 700, letterspacing: 2 },
-  { name: "Cinzel Decorative",  note: "decorative",    font: "'Cinzel Decorative', serif",    size: 78,  y: 280, dxL: -32, dxR: 32, hL: "H", hR: "F", weight: 700 },
-  { name: "Cormorant Garamond", note: "elegant serif", font: "'Cormorant Garamond', serif",   size: 110, y: 285, dxL: -32, dxR: 32, hL: "H", hR: "F", weight: 500, italic: true },
-  { name: "Playfair Display",   note: "modern serif",  font: "'Playfair Display', serif",     size: 96,  y: 285, dxL: -34, dxR: 34, hL: "H", hR: "F", weight: 900, italic: true },
-  { name: "Marcellus",          note: "vintage serif", font: "'Marcellus', serif",            size: 100, y: 285, dxL: -34, dxR: 34, hL: "H", hR: "F" },
-  { name: "Italiana",           note: "thin serif",    font: "'Italiana', serif",             size: 110, y: 285, dxL: -32, dxR: 32, hL: "H", hR: "F" },
-  { name: "Cardo Italic",       note: "old-style",     font: "'Cardo', serif",                size: 110, y: 285, dxL: -32, dxR: 32, hL: "H", hR: "F", italic: true, weight: 700 },
-  { name: "IM Fell English SC", note: "antique press", font: "'IM Fell English SC', serif",   size: 90,  y: 282, dxL: -34, dxR: 34, hL: "H", hR: "F" },
-  { name: "Limelight",          note: "art-deco",      font: "'Limelight', serif",            size: 90,  y: 285, dxL: -34, dxR: 34, hL: "H", hR: "F" },
+  { name: "Tangerine",            note: "elegant",
+    font: "'Tangerine', cursive",  weight: 700,
+    lc: { size: 165, y: 290, dxL: -28, dxR: 28 },
+    uc: { size: 150, y: 295, dxL: -38, dxR: 38 } },
 
-  { name: "UnifrakturMaguntia", note: "blackletter",   font: "'UnifrakturMaguntia', serif",   size: 130, y: 290, dxL: -30, dxR: 30, hL: "H", hR: "F" },
-  { name: "Pirata One",         note: "gothic display",font: "'Pirata One', serif",           size: 110, y: 290, dxL: -32, dxR: 32, hL: "H", hR: "F" },
-  { name: "Almendra",           note: "medieval",      font: "'Almendra', serif",             size: 110, y: 285, dxL: -32, dxR: 32, hL: "H", hR: "F", weight: 700 },
-  { name: "Uncial Antiqua",     note: "celtic uncial", font: "'Uncial Antiqua', serif",       size: 90,  y: 285, dxL: -34, dxR: 34, hL: "H", hR: "F" },
-  { name: "MedievalSharp",      note: "medieval",      font: "'MedievalSharp', cursive",      size: 110, y: 285, dxL: -32, dxR: 32, hL: "H", hR: "F" },
+  { name: "Sacramento",           note: "casual",
+    font: "'Sacramento', cursive",
+    lc: { size: 110, y: 280, dxL: -28, dxR: 28 },
+    uc: { size: 110, y: 285, dxL: -36, dxR: 36 } },
+
+  { name: "Pinyon Script",        note: "ornate",
+    font: "'Pinyon Script', cursive",
+    lc: { size: 130, y: 285, dxL: -28, dxR: 28 },
+    uc: { size: 120, y: 290, dxL: -42, dxR: 42 } },
+
+  { name: "Allura",               note: "flowing",
+    font: "'Allura', cursive",
+    lc: { size: 130, y: 285, dxL: -30, dxR: 30 },
+    uc: { size: 125, y: 290, dxL: -40, dxR: 40 } },
+
+  { name: "Parisienne",           note: "casual elegant",
+    font: "'Parisienne', cursive",
+    lc: { size: 100, y: 282, dxL: -28, dxR: 28 },
+    uc: { size: 100, y: 287, dxL: -36, dxR: 36 } },
+
+  { name: "Italianno",            note: "elegant flowing",
+    font: "'Italianno', cursive",
+    lc: { size: 145, y: 290, dxL: -28, dxR: 28 },
+    uc: { size: 140, y: 295, dxL: -36, dxR: 36 } },
+
+  { name: "Berkshire Swash",      note: "playful",
+    font: "'Berkshire Swash', cursive",
+    lc: { size: 100, y: 283, dxL: -32, dxR: 32 },
+    uc: { size: 100, y: 285, dxL: -36, dxR: 36 } },
+
+  { name: "Alex Brush",           note: "brush",
+    font: "'Alex Brush', cursive",
+    lc: { size: 130, y: 287, dxL: -28, dxR: 28 },
+    uc: { size: 125, y: 290, dxL: -38, dxR: 38 } },
+
+  { name: "Mrs Saint Delafield",  note: "vintage script",
+    font: "'Mrs Saint Delafield', cursive",
+    lc: { size: 130, y: 285, dxL: -30, dxR: 30 },
+    uc: { size: 125, y: 290, dxL: -42, dxR: 42 } },
+
+  { name: "Mr Dafoe",             note: "elegant script",
+    font: "'Mr Dafoe', cursive",
+    lc: { size: 130, y: 285, dxL: -28, dxR: 28 },
+    uc: { size: 125, y: 290, dxL: -42, dxR: 42 } },
+
+  { name: "Mr De Haviland",       note: "fine script",
+    font: "'Mr De Haviland', cursive",
+    lc: { size: 135, y: 285, dxL: -28, dxR: 28 },
+    uc: { size: 130, y: 290, dxL: -42, dxR: 42 } },
+
+  { name: "Herr Von Muellerhoff", note: "calligraphic",
+    font: "'Herr Von Muellerhoff', cursive",
+    lc: { size: 145, y: 290, dxL: -30, dxR: 30 },
+    uc: { size: 135, y: 295, dxL: -44, dxR: 44 } },
+
+  { name: "Petit Formal Script",  note: "formal",
+    font: "'Petit Formal Script', cursive",
+    lc: { size: 110, y: 283, dxL: -28, dxR: 28 },
+    uc: { size: 105, y: 287, dxL: -38, dxR: 38 } },
+
+  { name: "Rouge Script",         note: "decorative",
+    font: "'Rouge Script', cursive",
+    lc: { size: 130, y: 287, dxL: -28, dxR: 28 },
+    uc: { size: 125, y: 290, dxL: -38, dxR: 38 } },
+
+  { name: "Marck Script",         note: "casual",
+    font: "'Marck Script', cursive",
+    lc: { size: 115, y: 285, dxL: -28, dxR: 28 },
+    uc: { size: 110, y: 288, dxL: -34, dxR: 34 } },
+
+  { name: "Niconne",              note: "soft script",
+    font: "'Niconne', cursive",
+    lc: { size: 120, y: 285, dxL: -28, dxR: 28 },
+    uc: { size: 115, y: 290, dxL: -34, dxR: 34 } },
+
+  { name: "Yellowtail",           note: "retro brush",
+    font: "'Yellowtail', cursive",
+    lc: { size: 110, y: 283, dxL: -30, dxR: 30 },
+    uc: { size: 105, y: 287, dxL: -36, dxR: 36 } },
+
+  { name: "Pacifico",             note: "casual brush",
+    font: "'Pacifico', cursive",
+    lc: { size: 96,  y: 280, dxL: -30, dxR: 30 },
+    uc: { size: 96,  y: 285, dxL: -34, dxR: 34 } },
+
+  { name: "Satisfy",              note: "casual brush",
+    font: "'Satisfy', cursive",
+    lc: { size: 105, y: 283, dxL: -30, dxR: 30 },
+    uc: { size: 100, y: 287, dxL: -34, dxR: 34 } },
 ];
 
-// Selected variants for dark preview (a curated subset)
-const darkPicks = ["Great Vibes", "Tangerine", "Italianno", "Cinzel", "Cormorant Garamond", "UnifrakturMaguntia", "Uncial Antiqua", "Berkshire Swash"];
+// Curated subset to also render on dark
+const darkPicks = ["Great Vibes", "Tangerine", "Italianno", "Pinyon Script", "Allura", "Mrs Saint Delafield", "Mr Dafoe", "Alex Brush", "Berkshire Swash"];
 
 const flame = `
   <g transform="translate(231, 220) scale(1.5)">
@@ -70,50 +154,53 @@ const flame = `
     <path fill="#E0C060" d="M28.394 23.999c.148 3.084-2.561 4.293-4.019 3.709-2.106-.843-1.541-2.291-2.083-5.291s-2.625-5.083-5.708-6 2.25 6.333-1.247 8.667-3.08 9.084-1.872.426-3.753-.001-3.968-4.007C7.352 23.668 6 26.676 6 30c0 .368.023.73.055 1.09C9.125 34.124 13.342 36 18 36s8.875-1.876 11.945-4.91c.032-.36.055-.722.055-1.09 0-2.187-.584-4.236-1.606-6.001z"/>
   </g>`;
 
-function buildSvg(v, dark) {
+function buildSvg(f, casing, dark) {
   const bg = dark ? "#1D0D00" : "white";
   const ink = dark ? "#f5edd5" : "#1D0D00";
-  const ts = v.letterspacing ? ` letter-spacing="${v.letterspacing}"` : "";
-  const fw = v.weight ? ` font-weight="${v.weight}"` : "";
-  const fs = v.italic ? ` font-style="italic"` : "";
+  const t = casing === "upper" ? f.uc : f.lc;
+  const hL = casing === "upper" ? "H" : "h";
+  const hR = casing === "upper" ? "F" : "f";
+  const fw = f.weight ? ` font-weight="${f.weight}"` : "";
   return `
     <svg width="280" height="280" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
       <rect width="500" height="500" fill="${bg}"/>
       <polygon points="442,250 346,416.2 154,416.2 58,250 154,83.8 346,83.8" fill="none" stroke="#BFA030" stroke-width="1.6"/>
       <polygon points="430,250 340,404.6 160,404.6 70,250 160,95.4 340,95.4" fill="none" stroke="#BFA030" stroke-width="0.9"/>
       ${flame}
-      <text x="250" y="${v.y}" font-family="${v.font}" font-size="${v.size}"${fw}${fs}${ts} text-anchor="end"   fill="${ink}" dx="${v.dxL}">${v.hL}</text>
-      <text x="250" y="${v.y}" font-family="${v.font}" font-size="${v.size}"${fw}${fs}${ts} text-anchor="start" fill="${ink}" dx="${v.dxR}">${v.hR}</text>
+      <text x="250" y="${t.y}" font-family="${f.font}" font-size="${t.size}"${fw} text-anchor="end"   fill="${ink}" dx="${t.dxL}">${hL}</text>
+      <text x="250" y="${t.y}" font-family="${f.font}" font-size="${t.size}"${fw} text-anchor="start" fill="${ink}" dx="${t.dxR}">${hR}</text>
     </svg>`;
 }
 
-function buildCard(v, dark) {
-  const tag = v.note === "current" ? '<span class="current-tag">CURRENT</span>' : `<small>${v.note}</small>`;
+function buildCard(f, casing, dark) {
+  const isCurrent = f.note === "current" && casing === "lower";
+  const right = isCurrent
+    ? '<span class="current-tag">CURRENT</span>'
+    : `<span class="case-tag ${casing}">${casing === "upper" ? "H F" : "h f"}</span>`;
   return `
     <div class="card${dark ? " dark" : ""}">
-      <div class="svg-holder">${buildSvg(v, dark)}</div>
-      <div class="label"><span>${v.name}</span>${tag}</div>
+      <div class="svg-holder">${buildSvg(f, casing, dark)}</div>
+      <div class="label"><span>${f.name} <small>· ${f.note}</small></span>${right}</div>
     </div>`;
 }
 
-// Explicitly request each font file and wait until they're all loaded
-// before rendering the SVGs — otherwise the browser draws fallback fonts
-// for a frame and visitors see different glyphs than intended.
 function loadAllFonts() {
-  const specs = variants.map(v => {
-    const style = v.italic ? "italic" : "normal";
-    const weight = v.weight || 400;
-    return `${style} ${weight} ${v.size}px ${v.font}`;
-  });
+  const specs = [];
+  for (const f of fonts) {
+    const w = f.weight || 400;
+    specs.push(`${w} ${f.lc.size}px ${f.font}`);
+    specs.push(`${w} ${f.uc.size}px ${f.font}`);
+  }
   return Promise.all(specs.map(s => document.fonts.load(s).catch(() => null)));
 }
 
 function render() {
-  document.getElementById("light-grid").innerHTML = variants.map(v => buildCard(v, false)).join("");
-  document.getElementById("dark-grid").innerHTML = variants.filter(v => darkPicks.includes(v.name)).map(v => buildCard(v, true)).join("");
+  document.getElementById("lower-light").innerHTML = fonts.map(f => buildCard(f, "lower", false)).join("");
+  document.getElementById("upper-light").innerHTML = fonts.map(f => buildCard(f, "upper", false)).join("");
+  document.getElementById("lower-dark").innerHTML  = fonts.filter(f => darkPicks.includes(f.name)).map(f => buildCard(f, "lower", true)).join("");
+  document.getElementById("upper-dark").innerHTML  = fonts.filter(f => darkPicks.includes(f.name)).map(f => buildCard(f, "upper", true)).join("");
 }
 
-// Race against a 4s timeout so a slow CDN response doesn't leave the page blank.
 Promise.race([
   loadAllFonts().then(() => document.fonts.ready),
   new Promise(resolve => setTimeout(resolve, 4000)),
