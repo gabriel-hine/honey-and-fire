@@ -428,15 +428,22 @@
       box-shadow: none;
       page-break-after: avoid;
     }
-    /* Chrome's PDF renderer turns large text-shadow blurs and
-       drop-shadow filters into solid yellow rectangles instead of soft
-       glows. Drop them for print — on-screen the poster keeps its glow. */
+    /* Chrome's PDF renderer rasterises large blur radii as solid
+       coloured rectangles instead of soft glows — yellow for the
+       text-shadow on the band name + date, black for the singer-photo
+       box-shadow (especially the .singer-fire one, where the
+       scaleX(-1) transform makes the artefact obvious). Drop the
+       offending shadows/filters for print only; on screen the poster
+       keeps its full glow. */
     .band-name,
     .date-number {
       text-shadow: none;
     }
     .band-name .fire-icon {
       filter: none;
+    }
+    .singer-photo {
+      box-shadow: none;
     }
   }
 </style>
