@@ -97,10 +97,10 @@
     z-index: 10;
   }
 
-  /* Instagram QR — sits in the empty space on the left of the date, kept
-     absolutely positioned so the date itself stays centred in the content
-     stack. The image already includes a white quiet zone and the
-     @honeyandfire_band caption baked in, so no extra border or label needed. */
+  /* Social QRs — flank the date, absolutely positioned so the date itself
+     stays centred in the content stack. Both QRs use #1D0D00 as their
+     background so they blend with the poster instead of sitting on a
+     white card. Instagram = left, Facebook = right (.qr-right). */
   .qr-link {
     position: absolute;
     right: calc(100% + 80px);
@@ -109,11 +109,14 @@
     line-height: 0;
     -webkit-tap-highlight-color: transparent;
   }
+  .qr-link.qr-right {
+    right: auto;
+    left: calc(100% + 80px);
+  }
   .qr-img {
     width: 150px;
     height: auto;
     display: block;
-    /* background was recoloured to #1D0D00 so the QR blends with the poster */
   }
   .top-badge span {
     display: inline-block;
@@ -445,6 +448,9 @@
     <div class="date-block">
       <a class="qr-link" href="https://www.instagram.com/honeyandfire_band" target="_blank" rel="noopener">
         <img class="qr-img" src="images/qr-instagram.jpg?v=0dd36d1" alt="Instagram @honeyandfire_band" />
+      </a>
+      <a class="qr-link qr-right" href="https://www.facebook.com/share/1Ax3o1t19K/?mibextid=wwXIfr" target="_blank" rel="noopener">
+        <img class="qr-img" src="images/qr-facebook.png" alt="Facebook Honey & Fire" />
       </a>
       <div class="date-main">
         <span class="date-number">21</span>
