@@ -5,7 +5,7 @@
 <title>Honey & Fire — Logo Variants (Cursive)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tangerine:wght@400;700&family=Sacramento&family=Pinyon+Script&family=Allura&family=Parisienne&family=Italianno&family=Berkshire+Swash&family=Alex+Brush&family=Mrs+Saint+Delafield&family=Mr+Dafoe&family=Mr+De+Haviland&family=Petit+Formal+Script&family=Herr+Von+Muellerhoff&family=Rouge+Script&family=Marck+Script&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tangerine:wght@400;700&display=swap" rel="stylesheet" />
 <style>
   body { margin: 0; background: #1a1a1a; color: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 40px 20px; }
   h1 { text-align: center; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 8px; }
@@ -56,81 +56,7 @@ const fonts = [
     font: "'Tangerine', cursive",  weight: 700,
     lc: { size: 165, y: 290, dxL: -28, dxR: 28 },
     uc: { size: 150, y: 295, dxL: -38, dxR: 38 } },
-
-  { name: "Sacramento",           note: "casual",
-    font: "'Sacramento', cursive",
-    lc: { size: 110, y: 280, dxL: -28, dxR: 28 },
-    uc: { size: 110, y: 285, dxL: -36, dxR: 36 } },
-
-  { name: "Pinyon Script",        note: "ornate",
-    font: "'Pinyon Script', cursive",
-    lc: { size: 130, y: 285, dxL: -28, dxR: 28 },
-    uc: { size: 120, y: 290, dxL: -42, dxR: 42 } },
-
-  { name: "Allura",               note: "flowing",
-    font: "'Allura', cursive",
-    lc: { size: 130, y: 285, dxL: -30, dxR: 30 },
-    uc: { size: 125, y: 290, dxL: -40, dxR: 40 } },
-
-  { name: "Parisienne",           note: "casual elegant",
-    font: "'Parisienne', cursive",
-    lc: { size: 100, y: 282, dxL: -28, dxR: 28 },
-    uc: { size: 100, y: 287, dxL: -36, dxR: 36 } },
-
-  { name: "Italianno",            note: "elegant flowing",
-    font: "'Italianno', cursive",
-    lc: { size: 145, y: 290, dxL: -28, dxR: 28 },
-    uc: { size: 140, y: 295, dxL: -36, dxR: 36 } },
-
-  { name: "Berkshire Swash",      note: "playful",
-    font: "'Berkshire Swash', cursive",
-    lc: { size: 100, y: 283, dxL: -32, dxR: 32 },
-    uc: { size: 100, y: 285, dxL: -36, dxR: 36 } },
-
-  { name: "Alex Brush",           note: "brush",
-    font: "'Alex Brush', cursive",
-    lc: { size: 130, y: 287, dxL: -28, dxR: 28 },
-    uc: { size: 125, y: 290, dxL: -38, dxR: 38 } },
-
-  { name: "Mrs Saint Delafield",  note: "vintage script",
-    font: "'Mrs Saint Delafield', cursive",
-    lc: { size: 130, y: 285, dxL: -30, dxR: 30 },
-    uc: { size: 125, y: 290, dxL: -42, dxR: 42 } },
-
-  { name: "Mr Dafoe",             note: "elegant script",
-    font: "'Mr Dafoe', cursive",
-    lc: { size: 130, y: 285, dxL: -28, dxR: 28 },
-    uc: { size: 125, y: 290, dxL: -42, dxR: 42 } },
-
-  { name: "Mr De Haviland",       note: "fine script",
-    font: "'Mr De Haviland', cursive",
-    lc: { size: 135, y: 285, dxL: -28, dxR: 28 },
-    uc: { size: 130, y: 290, dxL: -42, dxR: 42 } },
-
-  { name: "Herr Von Muellerhoff", note: "calligraphic",
-    font: "'Herr Von Muellerhoff', cursive",
-    lc: { size: 145, y: 290, dxL: -30, dxR: 30 },
-    uc: { size: 135, y: 295, dxL: -44, dxR: 44 } },
-
-  { name: "Petit Formal Script",  note: "formal",
-    font: "'Petit Formal Script', cursive",
-    lc: { size: 110, y: 283, dxL: -28, dxR: 28 },
-    uc: { size: 105, y: 287, dxL: -38, dxR: 38 } },
-
-  { name: "Rouge Script",         note: "decorative",
-    font: "'Rouge Script', cursive",
-    lc: { size: 130, y: 287, dxL: -28, dxR: 28 },
-    uc: { size: 125, y: 290, dxL: -38, dxR: 38 } },
-
-  { name: "Marck Script",         note: "casual",
-    font: "'Marck Script', cursive",
-    lc: { size: 115, y: 285, dxL: -28, dxR: 28 },
-    uc: { size: 110, y: 288, dxL: -34, dxR: 34 } },
-
 ];
-
-// Curated subset to also render on dark
-const darkPicks = ["Great Vibes", "Tangerine", "Italianno", "Pinyon Script", "Allura", "Mrs Saint Delafield", "Mr Dafoe", "Alex Brush", "Berkshire Swash"];
 
 const flame = `
   <g transform="translate(231, 220) scale(1.5)">
@@ -247,13 +173,10 @@ function render() {
   document.getElementById("custom-grid").innerHTML =
     specials.map(s => buildSpecialCard(s, false)).join("") +
     specials.map(s => buildSpecialCard(s, true)).join("");
-  // Lowercase exploration is narrowed to the two finalists.
-  const lowerPicks = ["Great Vibes", "Tangerine"];
-  const lowerFonts = fonts.filter(f => lowerPicks.includes(f.name));
-  document.getElementById("lower-light").innerHTML = lowerFonts.map(f => buildCard(f, "lower", false)).join("");
+  document.getElementById("lower-light").innerHTML = fonts.map(f => buildCard(f, "lower", false)).join("");
   document.getElementById("upper-light").innerHTML = fonts.map(f => buildCard(f, "upper", false)).join("");
-  document.getElementById("lower-dark").innerHTML  = lowerFonts.map(f => buildCard(f, "lower", true)).join("");
-  document.getElementById("upper-dark").innerHTML  = fonts.filter(f => darkPicks.includes(f.name)).map(f => buildCard(f, "upper", true)).join("");
+  document.getElementById("lower-dark").innerHTML  = fonts.map(f => buildCard(f, "lower", true)).join("");
+  document.getElementById("upper-dark").innerHTML  = fonts.map(f => buildCard(f, "upper", true)).join("");
 }
 
 Promise.race([
