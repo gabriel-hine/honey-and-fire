@@ -96,8 +96,28 @@ function buildCard(v, dark) {
     </div>`;
 }
 
-document.getElementById("light-grid").innerHTML = variants.map(v => buildCard(v, false)).join("");
-document.getElementById("dark-grid").innerHTML = variants.filter(v => darkPicks.includes(v.name)).map(v => buildCard(v, true)).join("");
+// Explicitly request each font file and wait until they're all loaded
+// before rendering the SVGs — otherwise the browser draws fallback fonts
+// for a frame and visitors see different glyphs than intended.
+function loadAllFonts() {
+  const specs = variants.map(v => {
+    const style = v.italic ? "italic" : "normal";
+    const weight = v.weight || 400;
+    return `${style} ${weight} ${v.size}px ${v.font}`;
+  });
+  return Promise.all(specs.map(s => document.fonts.load(s).catch(() => null)));
+}
+
+function render() {
+  document.getElementById("light-grid").innerHTML = variants.map(v => buildCard(v, false)).join("");
+  document.getElementById("dark-grid").innerHTML = variants.filter(v => darkPicks.includes(v.name)).map(v => buildCard(v, true)).join("");
+}
+
+// Race against a 4s timeout so a slow CDN response doesn't leave the page blank.
+Promise.race([
+  loadAllFonts().then(() => document.fonts.ready),
+  new Promise(resolve => setTimeout(resolve, 4000)),
+]).then(render);
 </script>
 
 </body>
