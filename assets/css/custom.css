@@ -554,39 +554,36 @@
 
 /* ─── Contatti ─── */
 
-.contact-info {
-	margin-bottom: 2em;
+.contact-email {
 	text-align: center;
+	margin-top: 1.5em;
 }
 
-.contact-info .icons {
-	list-style: none;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: 0.5em 1.5em;
-}
-
-.contact-info .icons li {
-	font-size: 1em;
-	color: rgba(0, 0, 0, 0.8);
-	white-space: nowrap;
-	display: flex;
+.contact-email a {
+	display: inline-flex;
 	align-items: center;
+	gap: 0.6em;
+	font-size: 1.4em;
+	font-weight: 600;
+	color: rgba(0, 0, 0, 0.85);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	padding-bottom: 0.15em;
+	transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.contact-info .icons li .icon {
-	margin-right: 0.5em;
+.contact-email a:hover {
+	color: #D4A030;
+	border-bottom-color: #D4A030;
+}
+
+.contact-email .icon {
 	color: #D4A030;
 }
 
-@media screen and (max-width: 736px) {
-	.contact-info .icons {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 0.7em;
-		display: inline-flex;
+@media screen and (max-width: 480px) {
+	.contact-email a {
+		font-size: 1.1em;
 	}
 }
 
