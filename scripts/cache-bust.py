@@ -27,11 +27,13 @@ try:
 except (subprocess.CalledProcessError, FileNotFoundError):
     version = str(int(time.time()))
 
-# href="…" or src="…" pointing at a local asset under assets/ or images/,
-# with an optional existing ?v=… that we'll overwrite.
+# href="…" or src="…" pointing at any local asset (under assets/, images/, or
+# root-level files like logo-dark.svg). External http(s) URLs are skipped via
+# negative lookahead. An optional existing ?v=… is replaced.
 pattern = re.compile(
     r'((?:href|src)=")'
-    r'((?:\./)?(?:assets|images)/[^"?\s]+)'
+    r'(?!https?://|//|mailto:|tel:|#)'
+    r'((?:\./)?[^"?\s]+\.(?:css|js|svg|png|jpg|jpeg|webp|gif|ico|woff2?))'
     r'(?:\?v=[^"]*)?'
     r'"'
 )
