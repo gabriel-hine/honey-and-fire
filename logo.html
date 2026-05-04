@@ -28,6 +28,9 @@
 <h1>Honey &amp; Fire — Cursive Font Explorations</h1>
 <p class="subtitle">Script and cursive faces only. Each shown as lowercase (h/f) and capital (H/F).</p>
 
+<div class="section-title">Special — Tangerine with h↔f flourish</div>
+<div class="grid" id="custom-grid"></div>
+
 <div class="section-title">Lowercase — light</div>
 <div class="grid" id="lower-light"></div>
 
@@ -194,7 +197,96 @@ function loadAllFonts() {
   return Promise.all(specs.map(s => document.fonts.load(s).catch(() => null)));
 }
 
+// === Special Tangerine variants =============================================
+// Computed glyph geometry for Tangerine Bold at size 165, baseline y=290:
+//   h glyph bbox in canvas coords: x=172.45..262.87, y=165.27..290 (top-center 217.7,165)
+//   f glyph bbox in canvas coords: x=229.16..367.21, y=170..330.10  (bottom-center 298.2,330)
+// Honey gold (#BFA030) matches the brand mark; light fire (#D8581A) is a warm
+// orange-red that contrasts cleanly without clashing with the gold flame.
+const HONEY = "#BFA030";
+const FIRE  = "#D8581A";
+
+const tangerineCommon = `font-family="'Tangerine', cursive" font-weight="700" font-size="165"`;
+
+function specialFlourishSvg(dark) {
+  const bg = dark ? "#1D0D00" : "white";
+  const ink = dark ? "#f5edd5" : "#1D0D00";
+  return `
+    <svg width="280" height="280" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <rect width="500" height="500" fill="${bg}"/>
+      <polygon points="442,250 346,416.2 154,416.2 58,250 154,83.8 346,83.8" fill="none" stroke="#BFA030" stroke-width="1.6"/>
+      <polygon points="430,250 340,404.6 160,404.6 70,250 160,95.4 340,95.4" fill="none" stroke="#BFA030" stroke-width="0.9"/>
+      ${flame}
+      <text x="250" y="290" ${tangerineCommon} text-anchor="end"   fill="${ink}" dx="-28">h</text>
+      <text x="250" y="290" ${tangerineCommon} text-anchor="start" fill="${ink}" dx="28">f</text>
+      <path d="M 217.7 167 C 295 105, 415 175, 395 250 C 380 320, 340 348, 298.2 328" fill="none" stroke="${ink}" stroke-width="5" stroke-linecap="round"/>
+    </svg>`;
+}
+
+function specialDualColorSvg(dark) {
+  const bg = dark ? "#1D0D00" : "white";
+  return `
+    <svg width="280" height="280" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <rect width="500" height="500" fill="${bg}"/>
+      <polygon points="442,250 346,416.2 154,416.2 58,250 154,83.8 346,83.8" fill="none" stroke="#BFA030" stroke-width="1.6"/>
+      <polygon points="430,250 340,404.6 160,404.6 70,250 160,95.4 340,95.4" fill="none" stroke="#BFA030" stroke-width="0.9"/>
+      ${flame}
+      <text x="250" y="290" ${tangerineCommon} text-anchor="end"   fill="${HONEY}" dx="-28">h</text>
+      <text x="250" y="290" ${tangerineCommon} text-anchor="start" fill="${FIRE}"  dx="28">f</text>
+    </svg>`;
+}
+
+// Overlap variant: shift f LEFT so its ascender column aligns over h's ascender,
+// creating a "shared top-left" zone. Drop the flame from this composition since
+// the letter mass now occupies the center; the hexagon mark still anchors it.
+function specialOverlapSvg(dark) {
+  const bg = dark ? "#1D0D00" : "white";
+  return `
+    <svg width="280" height="280" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <rect width="500" height="500" fill="${bg}"/>
+      <polygon points="442,250 346,416.2 154,416.2 58,250 154,83.8 346,83.8" fill="none" stroke="#BFA030" stroke-width="1.6"/>
+      <polygon points="430,250 340,404.6 160,404.6 70,250 160,95.4 340,95.4" fill="none" stroke="#BFA030" stroke-width="0.9"/>
+      <text x="250" y="290" ${tangerineCommon} text-anchor="end"   fill="${HONEY}" dx="-28" opacity="0.92">h</text>
+      <text x="250" y="290" ${tangerineCommon} text-anchor="start" fill="${FIRE}"  dx="-29" opacity="0.92">f</text>
+    </svg>`;
+}
+
+// Overlap variant + flame above the letter mass
+function specialOverlapWithFlameSvg(dark) {
+  const bg = dark ? "#1D0D00" : "white";
+  return `
+    <svg width="280" height="280" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <rect width="500" height="500" fill="${bg}"/>
+      <polygon points="442,250 346,416.2 154,416.2 58,250 154,83.8 346,83.8" fill="none" stroke="#BFA030" stroke-width="1.6"/>
+      <polygon points="430,250 340,404.6 160,404.6 70,250 160,95.4 340,95.4" fill="none" stroke="#BFA030" stroke-width="0.9"/>
+      <g transform="translate(231, 130) scale(1.1)">
+        <path fill="#BFA030" d="M35 19c0-2.062-.367-4.039-1.04-5.868-.46 5.389-3.333 8.157-6.335 6.868-2.812-1.208-.917-5.917-.777-8.164.236-3.809-.012-8.169-6.931-11.794 2.875 5.5.333 8.917-2.333 9.125-2.958.231-5.667-2.542-4.667-7.042-3.238 2.386-3.332 6.402-2.333 9 1.042 2.708-.042 4.958-2.583 5.208-2.84.28-4.418-3.041-2.963-8.333C2.52 10.965 1 14.805 1 19c0 9.389 7.611 17 17 17s17-7.611 17-17z"/>
+        <path fill="#E0C060" d="M28.394 23.999c.148 3.084-2.561 4.293-4.019 3.709-2.106-.843-1.541-2.291-2.083-5.291s-2.625-5.083-5.708-6 2.25 6.333-1.247 8.667-3.08 9.084-1.872.426-3.753-.001-3.968-4.007C7.352 23.668 6 26.676 6 30c0 .368.023.73.055 1.09C9.125 34.124 13.342 36 18 36s8.875-1.876 11.945-4.91c.032-.36.055-.722.055-1.09 0-2.187-.584-4.236-1.606-6.001z"/>
+      </g>
+      <text x="250" y="320" ${tangerineCommon} text-anchor="end"   fill="${HONEY}" dx="-28" opacity="0.92">h</text>
+      <text x="250" y="320" ${tangerineCommon} text-anchor="start" fill="${FIRE}"  dx="-29" opacity="0.92">f</text>
+    </svg>`;
+}
+
+const specials = [
+  { name: "Tangerine + flourish",        note: "h-top connects to f-bottom",           render: specialFlourishSvg },
+  { name: "Tangerine dual color",        note: "honey-gold h, light-fire f",           render: specialDualColorSvg },
+  { name: "Tangerine overlap",           note: "shared ascender, dual color, no flame", render: specialOverlapSvg },
+  { name: "Tangerine overlap + flame",   note: "shared ascender, flame above",          render: specialOverlapWithFlameSvg },
+];
+
+function buildSpecialCard(s, dark) {
+  return `
+    <div class="card${dark ? " dark" : ""}">
+      <div class="svg-holder">${s.render(dark)}</div>
+      <div class="label"><span>${s.name} <small>· ${s.note}</small></span><span class="case-tag">special</span></div>
+    </div>`;
+}
+
 function render() {
+  document.getElementById("custom-grid").innerHTML =
+    specials.map(s => buildSpecialCard(s, false)).join("") +
+    specials.map(s => buildSpecialCard(s, true)).join("");
   document.getElementById("lower-light").innerHTML = fonts.map(f => buildCard(f, "lower", false)).join("");
   document.getElementById("upper-light").innerHTML = fonts.map(f => buildCard(f, "upper", false)).join("");
   document.getElementById("lower-dark").innerHTML  = fonts.filter(f => darkPicks.includes(f.name)).map(f => buildCard(f, "lower", true)).join("");
