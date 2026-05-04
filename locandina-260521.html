@@ -28,22 +28,10 @@
     flex-shrink: 0;
   }
 
-  /* Brand logo — top centre, just under the "Una serata con" badge */
-  .brand-logo {
-    position: absolute;
-    top: 78px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 96px;
-    height: 96px;
-    z-index: 10;
-    /* logo-dark.svg has its own #1D0D00 fill that blends with the poster */
-  }
-
-  /* Singer portrait photos — pushed down to make room for the logo */
+  /* Singer portrait photos */
   .singers {
     position: absolute;
-    top: 188px;
+    top: 120px;
     left: 0;
     right: 0;
     z-index: 3;
@@ -161,9 +149,11 @@
     height: 1px;
     background: linear-gradient(to right, transparent, rgba(232,140,20,0.7), transparent);
   }
-  .divider-icon {
-    font-size: 18px;
-    opacity: 0.9;
+  .divider-logo {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    /* logo-dark.svg has its own #1D0D00 fill that blends with the poster */
   }
 
   /* "LIVE" tag */
@@ -362,8 +352,8 @@
 
   <!-- Singer portraits -->
   <div class="singers">
-    <img class="singer-photo singer-honey" src="images/fulls/08.jpg?v=e2febd8" alt="Honey – Francesca" />
-    <img class="singer-photo singer-fire"  src="images/fulls/09.jpg?v=e2febd8" alt="Fire – Giorgia" />
+    <img class="singer-photo singer-honey" src="images/fulls/08.jpg?v=8199f94" alt="Honey – Francesca" />
+    <img class="singer-photo singer-fire"  src="images/fulls/09.jpg?v=8199f94" alt="Fire – Giorgia" />
   </div>
 
   <!-- Bottom fade -->
@@ -373,9 +363,6 @@
   <div class="top-badge">
     <span>Una serata con</span>
   </div>
-
-  <!-- Brand logo -->
-  <img class="brand-logo" src="logo-dark.svg?v=e2febd8" alt="Honey & Fire" />
 
   <!-- Main content -->
   <div class="content">
@@ -388,8 +375,7 @@
 
     <div class="divider">
       <div class="divider-line"></div>
-      <span class="divider-icon">🍯</span>
-      <span class="divider-icon">🔥</span>
+      <img class="divider-logo" src="logo-dark.svg?v=8199f94" alt="Honey & Fire" />
       <div class="divider-line"></div>
     </div>
 
@@ -426,7 +412,7 @@
   <!-- Jam session badge — bottom left -->
   <div class="jam-badge">
     <img class="jam-img"
-         src="images/grande_giove.png?v=e2febd8"
+         src="images/grande_giove.png?v=8199f94"
          alt="Grande Giove" />
     <div class="jam-text">
       <div class="jam-label">a seguire</div>
@@ -435,7 +421,7 @@
   </div>
 
   <!-- Pub Clown logo — bottom right -->
-  <img class="venue-logo" src="images/pub_clown_logo.png?v=e2febd8" alt="Il Clown Pub" />
+  <img class="venue-logo" src="images/pub_clown_logo.png?v=8199f94" alt="Il Clown Pub" />
 
 </div><!-- /poster -->
 </body>
