@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Honey & Fire//Locandina 260521//IT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:honey-and-fire-pubclown-20260521@honeyandfire.band
+DTSTAMP:20260504T180000Z
+DTSTART:20260521T180000Z
+DTEND:20260521T220000Z
+SUMMARY:Honey & Fire — Live al Pub Clown
+LOCATION:Pub Clown\, Via Litoranea 24\, 00122 Ostia (RM)
+DESCRIPTION:Honey & Fire in concerto live: pop\, soul\, funk e grandi class
+ ici. Inizio ore 20:00.\n\nInfo e prenotazioni: https://www.honeyandfire.b
+ and/locandina-260521.html\nWhatsApp: +39 339 860 9330
+URL:https://www.honeyandfire.band/locandina-260521.html
+GEO:41.7345;12.2810
+END:VEVENT
+END:VCALENDAR
