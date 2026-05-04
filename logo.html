@@ -236,20 +236,26 @@ function specialDualColorSvg(dark) {
     </svg>`;
 }
 
-// Overlap variant: shift f LEFT so its ascender column aligns over h's ascender,
-// creating a "shared top-left" zone. Drop the flame from this composition since
-// the letter mass now occupies the center; the hexagon mark still anchors it.
-function specialOverlapSvg(dark) {
-  const bg = dark ? "#1D0D00" : "white";
-  return `
-    <svg width="280" height="280" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      <rect width="500" height="500" fill="${bg}"/>
-      <polygon points="442,250 346,416.2 154,416.2 58,250 154,83.8 346,83.8" fill="none" stroke="#BFA030" stroke-width="1.6"/>
-      <polygon points="430,250 340,404.6 160,404.6 70,250 160,95.4 340,95.4" fill="none" stroke="#BFA030" stroke-width="0.9"/>
-      <text x="250" y="290" ${tangerineCommon} text-anchor="end"   fill="${HONEY}" dx="-28" opacity="0.92">h</text>
-      <text x="250" y="290" ${tangerineCommon} text-anchor="start" fill="${FIRE}"  dx="-29" opacity="0.92">f</text>
-    </svg>`;
+// Overlap variant: shift f LEFT (and h slightly right) so the letter bodies
+// — not just the ascenders — overlap. Drop the flame from this composition
+// since the letter mass now occupies the center; the hexagon mark still anchors
+// it. Three intensities so we can pick how aggressive the fusion should look.
+function makeOverlapSvg(hDx, fDx) {
+  return (dark) => {
+    const bg = dark ? "#1D0D00" : "white";
+    return `
+      <svg width="280" height="280" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="500" height="500" fill="${bg}"/>
+        <polygon points="442,250 346,416.2 154,416.2 58,250 154,83.8 346,83.8" fill="none" stroke="#BFA030" stroke-width="1.6"/>
+        <polygon points="430,250 340,404.6 160,404.6 70,250 160,95.4 340,95.4" fill="none" stroke="#BFA030" stroke-width="0.9"/>
+        <text x="250" y="290" ${tangerineCommon} text-anchor="end"   fill="${HONEY}" dx="${hDx}" opacity="0.92">h</text>
+        <text x="250" y="290" ${tangerineCommon} text-anchor="start" fill="${FIRE}"  dx="${fDx}" opacity="0.92">f</text>
+      </svg>`;
+  };
 }
+const specialOverlapSvg     = makeOverlapSvg(-20, -55);
+const specialOverlapMoreSvg = makeOverlapSvg(-12, -75);
+const specialOverlapMaxSvg  = makeOverlapSvg(-4,  -95);
 
 // Overlap variant + flame above the letter mass
 function specialOverlapWithFlameSvg(dark) {
@@ -269,9 +275,11 @@ function specialOverlapWithFlameSvg(dark) {
 }
 
 const specials = [
-  { name: "Tangerine + flourish",        note: "h-top connects to f-bottom",           render: specialFlourishSvg },
-  { name: "Tangerine dual color",        note: "honey-gold h, light-fire f",           render: specialDualColorSvg },
-  { name: "Tangerine overlap",           note: "shared ascender, dual color, no flame", render: specialOverlapSvg },
+  { name: "Tangerine + flourish",        note: "h-top connects to f-bottom",            render: specialFlourishSvg },
+  { name: "Tangerine dual color",        note: "honey-gold h, light-fire f",            render: specialDualColorSvg },
+  { name: "Tangerine overlap",           note: "bodies overlap, dual color, no flame",  render: specialOverlapSvg },
+  { name: "Tangerine overlap (more)",    note: "deeper overlap",                        render: specialOverlapMoreSvg },
+  { name: "Tangerine overlap (max)",     note: "letters nearly fused",                  render: specialOverlapMaxSvg },
   { name: "Tangerine overlap + flame",   note: "shared ascender, flame above",          render: specialOverlapWithFlameSvg },
 ];
 
