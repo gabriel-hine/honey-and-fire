@@ -127,7 +127,7 @@
   /* Date */
   .date-block {
     position: absolute;
-    top: 820px;
+    top: 780px;
     left: 0;
     right: 0;
     text-align: center;
@@ -177,7 +177,7 @@
   /* Venue */
   .venue {
     position: absolute;
-    top: 1055px;
+    top: 1015px;
     left: 0;
     right: 0;
     text-align: center;
@@ -201,10 +201,13 @@
   }
 
   /* Bottom-left: Grande Giove portrait stacked above the "a seguire /
-     Jam Session" label. The logo dominates; the label sits underneath. */
+     Jam Session" label. Anchored by `top` (not `bottom`) so Chrome's
+     headless screenshot can't shave the trailing line off — pulling
+     the badge ~18px above the canvas bottom keeps the title text
+     fully inside the 1350-tall frame. */
   .jam-badge {
     position: absolute;
-    bottom: 30px;
+    top: 1105px;
     left: 70px;
     display: flex;
     flex-direction: column;
@@ -212,35 +215,36 @@
     gap: 10px;
   }
   .jam-img {
-    width: 130px;
-    height: 130px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid rgba(232,140,20,0.6);
     filter: brightness(0.88) saturate(0.95);
   }
-  .jam-text { text-align: center; line-height: 1.2; }
+  .jam-text { text-align: center; line-height: 1.1; }
   .jam-label {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: rgba(245,237,213,0.55);
+    color: rgba(245,237,213,0.6);
   }
   .jam-title {
-    font-weight: 400;
-    font-size: 22px;
+    font-weight: 500;
+    font-size: 44px;
     letter-spacing: 1.5px;
-    color: rgba(245,237,213,0.85);
-    margin-top: 4px;
+    color: rgba(245,237,213,0.92);
+    margin-top: 6px;
   }
 
   /* Bottom-right: Pub Clown logo stacked above the WhatsApp prenotazioni
      phone number. column-reverse keeps the DOM order link → logo while
-     visually placing the logo on top. */
+     visually placing the logo on top. Same top-anchor trick as
+     .jam-badge so the bottom line never gets shaved by the screenshot. */
   .venue-badge {
     position: absolute;
-    bottom: 30px;
+    top: 1105px;
     right: 70px;
     display: flex;
     flex-direction: column-reverse;
@@ -249,33 +253,33 @@
   }
   .venue-contact { text-decoration: none; text-align: center; color: inherit; }
   .venue-info-label {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: rgba(245,237,213,0.6);
-    line-height: 1.2;
-    margin-bottom: 6px;
+    color: rgba(245,237,213,0.65);
+    line-height: 1.1;
+    margin-bottom: 8px;
   }
   .venue-info-number {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    font-size: 22px;
-    font-weight: 400;
+    gap: 14px;
+    font-size: 44px;
+    font-weight: 500;
     letter-spacing: 1.5px;
     color: #f5edd5;
-    line-height: 1.2;
+    line-height: 1.1;
   }
   .venue-info-number .wa-icon-small {
-    width: 26px;
-    height: 26px;
+    width: 44px;
+    height: 44px;
     flex-shrink: 0;
   }
   .venue-logo {
-    width: 130px;
-    height: 130px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
     opacity: 0.92;
@@ -289,19 +293,13 @@
   <div class="top-badge"><span>Una serata con</span></div>
 
   <div class="singers">
-    <img class="singer singer-honey" src="images/fulls/08.jpg?v=58dfdee" alt="Honey – Francesca" />
-    <img class="singer singer-fire"  src="images/fulls/09.jpg?v=58dfdee" alt="Fire – Giorgia" />
+    <img class="singer singer-honey" src="images/fulls/08.jpg?v=2b87487" alt="Honey – Francesca" />
+    <img class="singer singer-fire"  src="images/fulls/09.jpg?v=2b87487" alt="Fire – Giorgia" />
   </div>
 
   <h1 class="band-name">Honey <span class="amp">&amp;</span> <span class="fire">Fire</span></h1>
 
   <div class="tagline">Pop &nbsp;·&nbsp; Soul &nbsp;·&nbsp; Funk</div>
-
-  <div class="divider">
-    <div class="divider-line"></div>
-    <img class="divider-logo" src="logo-dark.svg" alt="Honey & Fire" />
-    <div class="divider-line"></div>
-  </div>
 
   <div class="date-block">
     <span class="date-day">Giovedì</span>
@@ -318,7 +316,7 @@
   </div>
 
   <div class="jam-badge">
-    <img class="jam-img" src="images/grande_giove.png" alt="Grande Giove" />
+    <img class="jam-img" src="images/grande_giove.png?v=2b87487" alt="Grande Giove" />
     <div class="jam-text">
       <div class="jam-label">a seguire</div>
       <div class="jam-title">Jam Session</div>
@@ -336,7 +334,7 @@
         <span>339 860 9330</span>
       </div>
     </a>
-    <img class="venue-logo" src="images/pub_clown_logo.png" alt="Il Clown Pub" />
+    <img class="venue-logo" src="images/pub_clown_logo.png?v=2b87487" alt="Il Clown Pub" />
   </div>
 
 </div>
