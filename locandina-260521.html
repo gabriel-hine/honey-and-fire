@@ -490,5 +490,13 @@
   </div>
 
 </div><!-- /poster -->
+
+<script>
+  // Network-first for HTML so returning visitors aren't stuck on a stale
+  // cached poster after a deploy. See sw.js for details.
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+  }
+</script>
 </body>
 </html>

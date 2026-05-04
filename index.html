@@ -605,5 +605,13 @@
 			<script src="assets/js/main.js?v=99b819b"></script>
 			<script src="assets/js/custom.js?v=99b819b"></script>
 
+			<script>
+				// Network-first for HTML so returning visitors aren't stuck on a
+				// stale cached page after a deploy. See sw.js for details.
+				if ("serviceWorker" in navigator) {
+					navigator.serviceWorker.register("/sw.js");
+				}
+			</script>
+
 	</body>
 </html>
