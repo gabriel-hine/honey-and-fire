@@ -47,6 +47,16 @@
       margin: 0;
       box-shadow: none;
     }
+    /* Chrome's PDF renderer turns large text-shadow blurs into solid
+       yellowish rectangles instead of soft glows. Drop the glow for
+       print — the on-screen poster keeps it. */
+    .band-name,
+    .date-number {
+      text-shadow: none;
+    }
+    .band-name .fire-icon {
+      filter: none;
+    }
   }
 
   /* Singer portrait photos */
