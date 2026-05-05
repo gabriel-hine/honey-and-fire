@@ -42,12 +42,17 @@ def stamp(text: str) -> str:
     return pattern.sub(lambda m: f'{m.group(1)}{m.group(2)}?v={version}"', text)
 
 changed = []
-for path in sorted(ROOT.glob("*.html")):
+# Walk root + every subdirectory so /en/index.html (and any future locale
+# pages) stay in lockstep with the IT pages.
+for path in sorted(ROOT.rglob("*.html")):
+    # Skip vendor / build / .git assets if they ever appear
+    if any(part in path.parts for part in (".git", "node_modules")):
+        continue
     text = path.read_text()
     new = stamp(text)
     if new != text:
         path.write_text(new)
-        changed.append(path.name)
+        changed.append(str(path.relative_to(ROOT)))
 
 print(f"version: {version}")
 print("updated: " + (", ".join(changed) if changed else "none"))
