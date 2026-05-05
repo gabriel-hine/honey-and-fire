@@ -587,29 +587,57 @@
 	}
 }
 
-/* ─── Contatti — three-card grid (email + IG QR + FB QR) ─── */
+/* ─── Contatti — plain email link on top, two QR cards below ─── */
 
+.contact-email {
+	text-align: center;
+	margin-top: 1.5em;
+}
+
+.contact-email a {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6em;
+	font-size: 1.4em;
+	font-weight: 600;
+	color: rgba(0, 0, 0, 0.85);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	padding-bottom: 0.15em;
+	transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-email a:hover {
+	color: #D4A030;
+	border-bottom-color: #D4A030;
+}
+
+.contact-email .icon {
+	color: #D4A030;
+}
+
+/* QR cards: only IG + FB get the boxed treatment. */
 .contact-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+	justify-content: center;
 	gap: 2em;
-	max-width: 900px;
-	margin: 1.5em auto 0;
+	max-width: 720px;
+	margin: 2.5em auto 0;
 }
 
 .contact-card {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	text-align: center;
 	text-decoration: none;
 	color: inherit;
-	border-bottom: 1px solid rgba(212, 160, 48, 0.25); /* override base anchor underline w/ soft frame */
 	background: rgba(0, 0, 0, 0.06);
 	border: 1px solid rgba(212, 160, 48, 0.25);
 	border-radius: 6px;
-	padding: 1.6em 1.2em;
+	padding: 1.4em 1.2em;
 	transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -629,22 +657,6 @@
 	margin-bottom: 0.9em;
 }
 
-.contact-art {
-	width: 200px;
-	height: 200px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: linear-gradient(135deg, #2a1810, #1D0D00);
-	border-radius: 4px;
-	margin-bottom: 0.9em;
-}
-
-.contact-art .icon {
-	font-size: 5em;
-	color: #D4A030;
-}
-
 .contact-label {
 	font-family: 'Oswald', 'Source Sans Pro', sans-serif;
 	font-size: 0.78em;
@@ -662,13 +674,12 @@
 }
 
 @media screen and (max-width: 480px) {
+	.contact-email a { font-size: 1.1em; }
 	.contact-grid { gap: 1.4em; }
-	.contact-qr,
-	.contact-art {
+	.contact-qr {
 		width: 180px;
 		height: 180px;
 	}
-	.contact-art .icon { font-size: 4.2em; }
 	.contact-value { font-size: 0.95em; }
 }
 
