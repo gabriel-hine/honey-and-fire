@@ -184,6 +184,17 @@
 @media screen and (max-width: 736px) {
 	#galleria { display: none; }
 	#header nav ul li a[href="#galleria"] { display: none; }
+
+	/* HTML5UP forces .main.fullscreen to height: auto on phones, which
+	   lets the hero (and Chi Siamo) size to their text content and end
+	   well before the viewport bottom — exposing the next section's
+	   honeycomb pattern at the bottom of the screen. Reinstate at-least
+	   one full viewport height. 100dvh accounts for Safari's dynamic
+	   URL-bar; 100vh is the desktop fallback. */
+	.main.fullscreen {
+		min-height: 100vh;
+		min-height: 100dvh;
+	}
 }
 
 /* ─── Chi Siamo — wider content box ─── */
