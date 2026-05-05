@@ -41,12 +41,29 @@
 	transform: translateY(-7px) rotate(-45deg);
 }
 
-@media screen and (max-width: 736px) {
+/* Hamburger breakpoint — bumped from 736px to 1100px because the nav now
+   carries 12 items (7 menu links + 3 social icons + 2 language flags),
+   so the desktop layout overlaps the wordmark on narrow desktop windows.
+   Mirror HTML5UP's mobile-mode header resets (which fire at 736px) so the
+   wordmark and toggle don't collide between 737–1100px. */
+@media screen and (max-width: 1100px) {
 	#header {
+		height: 2.5em;
+		line-height: 2.5em;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
+	#header h1 {
+		text-align: center;
+		position: relative;
+		left: 0;
+		top: 0;
+		height: 2.5em;
+		line-height: 2.5em;
+	}
+	#header h1 a { font-size: 1em; }
+	body { padding-top: 2.5em; }
 
 	#menu-toggle {
 		display: flex;
