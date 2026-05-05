@@ -93,6 +93,42 @@
 	#header nav ul li:last-child a {
 		border-bottom: none;
 	}
+
+	/* Mobile: Instagram / Facebook / Spotify + IT / UK flags share one
+	   centred row at the bottom of the dropdown instead of stacking. */
+	#header nav ul {
+		display: block;
+		text-align: center;
+	}
+	#header nav ul li.nav-icon,
+	#header nav ul li.nav-lang {
+		display: inline-block;
+		width: auto;
+	}
+	#header nav ul li.nav-icon a,
+	#header nav ul li.nav-lang a {
+		display: inline-block;
+		padding: 0.7em 0.55em;
+		border-bottom: 0;
+	}
+	#header nav ul li.nav-icon:first-of-type {
+		margin: 0.3em 0 0 0;
+		padding-top: 0.3em;
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
+	}
+	#header nav ul li.nav-icon:first-of-type,
+	#header nav ul li.nav-icon ~ li.nav-icon,
+	#header nav ul li.nav-lang {
+		border-top-color: transparent;
+	}
+	/* Re-add a single divider strip ABOVE the whole icon row */
+	#header nav ul li.nav-icon:first-of-type {
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
+	}
+	#header nav ul li.nav-lang svg {
+		width: 26px;
+		height: 17px;
+	}
 }
 
 /* ─── Galleria — masonry layout for mixed aspect ratios ─── */
