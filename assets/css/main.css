@@ -2244,22 +2244,35 @@ input, select, textarea {
 /* Hero */
 
 	#hero {
-		/* PLACEHOLDER: Replace with real band hero photo */
-		background: url("images/overlay.png"), linear-gradient(135deg, #1A1A2E 0%, #2c1810 40%, #D4A030 70%, #C0392B 100%);
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
-		background-repeat: repeat, no-repeat;
+		/* Layered (top → bottom):
+		   1) overlay.png noise texture
+		   2) dark scrim for text legibility (kicks in once the AI bg
+		      lands; harmless over the gradient placeholder too)
+		   3) hero-bg.jpg — Gemini-generated honeycomb + flame backdrop
+		   4) gradient fallback (used if the JPG isn't present yet) */
+		background:
+			url("images/overlay.png"),
+			linear-gradient(135deg, rgba(29,13,0,0.55), rgba(29,13,0,0.25) 50%, rgba(29,13,0,0.65)),
+			url("../../images/hero-bg.jpg"),
+			linear-gradient(135deg, #1A1A2E 0%, #2c1810 40%, #D4A030 70%, #C0392B 100%);
+		background-size: 256px 256px, cover, cover, cover;
+		background-attachment: fixed, fixed, fixed, fixed;
+		background-position: top left, center, center, bottom center;
+		background-repeat: repeat, no-repeat, no-repeat, no-repeat;
 	}
 
 /* Chi Siamo */
 
 	#chi-siamo {
-		/* PLACEHOLDER: Replace with real band/venue photo */
-		background: url("images/overlay.png"), linear-gradient(135deg, #1A1A2E 0%, #C0392B 50%, #D4A030 100%);
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, center center;
+		background:
+			url("images/overlay.png"),
+			linear-gradient(135deg, rgba(29,13,0,0.55), rgba(29,13,0,0.25) 50%, rgba(29,13,0,0.65)),
+			url("../../images/chi-siamo-bg.jpg"),
+			linear-gradient(135deg, #1A1A2E 0%, #C0392B 50%, #D4A030 100%);
+		background-size: 256px 256px, cover, cover, cover;
+		background-attachment: fixed, fixed, fixed, fixed;
+		background-position: top left, center, center, center;
+		background-repeat: repeat, no-repeat, no-repeat, no-repeat;
 	}
 
 /* Contatti */
