@@ -616,6 +616,42 @@
 	color: #1DB954;
 }
 
+/* ─── Header language switcher ─── */
+
+#header nav ul li.nav-lang {
+	display: inline-flex;
+	align-items: center;
+}
+#header nav ul li.nav-lang:first-of-type {
+	margin-left: 0.8em;
+}
+#header nav ul li.nav-lang a {
+	display: inline-flex;
+	align-items: center;
+	padding: 0 0.25em;
+	height: 3em;
+	line-height: 0;
+	text-decoration: none;
+	border-bottom: 0;
+}
+#header nav ul li.nav-lang svg {
+	display: block;
+	width: 28px;
+	height: 18px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+	opacity: 0.45;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+#header nav ul li.nav-lang a:hover svg {
+	opacity: 0.85;
+	transform: scale(1.05);
+}
+#header nav ul li.nav-lang.nav-lang-active svg {
+	opacity: 1;
+	box-shadow: 0 0 0 1px rgba(212, 160, 48, 0.6);
+}
+
 /* ─── Prossimi Eventi — locandina-as-card ─── */
 
 .events-grid {
