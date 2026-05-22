@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<title>Honey & Fire — Live @ The Riff, 26 Luglio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1D0D00;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  /* Screen-only CTA bar under the poster, hidden in @media print. */
+  .cta-buttons {
+    width: 794px;
+    max-width: 100%;
+    margin: 24px auto 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Oswald', sans-serif;
+  }
+  .cta-buttons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 20px;
+    background: rgba(232,160,48,0.10);
+    border: 1px solid rgba(232,160,48,0.55);
+    border-radius: 4px;
+    color: #f5edd5;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cta-buttons a:hover {
+    background: rgba(232,160,48,0.22);
+    border-color: #e8a030;
+    color: #fff;
+  }
+  .cta-buttons a.cta-primary {
+    background: #25D366;
+    border-color: #25D366;
+    color: #fff;
+  }
+  .cta-buttons a.cta-primary:hover {
+    background: #1ebe5c;
+    border-color: #1ebe5c;
+  }
+  .cta-buttons svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* A4 at 96dpi = 794 × 1123px. Background mirrors the site hero:
+     subtle scrim on top of the honeycomb + flame portrait, with the
+     base brown as the final fallback. */
+  .poster {
+    position: relative;
+    width: 794px;
+    height: 1123px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(29,13,0,0.55), rgba(29,13,0,0.30) 45%, rgba(29,13,0,0.70)),
+      url("images/hero-bg-portrait.jpg?v=829695d") center / cover no-repeat,
+      #1D0D00;
+    flex-shrink: 0;
+  }
+
+  /* Singer portrait photos */
+  .singers {
+    position: absolute;
+    top: 78px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 78px;
+  }
+  .singer-photo {
+    width: 286px;
+    height: 336px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 3px solid #e8a030;
+    box-shadow:
+      0 0 0 1px rgba(232,160,48,0.15),
+      0 8px 40px rgba(0,0,0,0.9),
+      0 2px 12px rgba(0,0,0,0.6);
+    display: block;
+    flex-shrink: 0;
+  }
+  .singer-honey { object-position: center 12%; }
+  .singer-fire  { object-position: center 18%; transform: scaleX(-1); }
+
+  /* Musician portraits — row of 4 small circles under the singers. */
+  .musicians {
+    position: absolute;
+    top: 432px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 0 60px;
+  }
+  .musician {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+  }
+  .musician-photo {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(232,160,48,0.85);
+    box-shadow:
+      0 0 0 1px rgba(232,160,48,0.12),
+      0 4px 18px rgba(0,0,0,0.75);
+    display: block;
+  }
+  .musician-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.85);
+    margin-top: 8px;
+    line-height: 1.1;
+  }
+  .musician-role {
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(232,160,48,0.75);
+    margin-top: 2px;
+    line-height: 1.1;
+  }
+
+  /* Bottom fade for text legibility */
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(29,13,0,0.72) 30%,
+      rgba(29,13,0,0.97) 60%,
+      #1D0D00 100%
+    );
+  }
+
+  /* All content above overlays */
+  .content {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 52px 36px;
+    text-align: center;
+    color: #f5edd5;
+  }
+
+  /* Top badge */
+  .top-badge {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+  }
+
+  /* Social QRs flank the date, absolutely positioned so the date stays centred. */
+  .qr-link {
+    position: absolute;
+    right: calc(100% + 60px);
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .qr-link.qr-right {
+    right: auto;
+    left: calc(100% + 60px);
+  }
+  .qr-img {
+    width: 130px;
+    height: auto;
+    display: block;
+  }
+  .top-badge span {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #e8a030;
+    border: 1px solid rgba(232,160,48,0.5);
+    padding: 5px 18px;
+    border-radius: 2px;
+  }
+
+  /* Band name */
+  .band-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 0.95;
+    letter-spacing: -1px;
+    color: #f5edd5;
+    text-shadow:
+      0 0 60px rgba(232,140,20,0.4),
+      0 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 6px;
+  }
+  .band-name .amp {
+    color: #e8841a;
+    font-style: italic;
+  }
+  .band-name .fire {
+    color: #f0a040;
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 8px 0 12px;
+    width: 100%;
+    max-width: 460px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(232,140,20,0.7), transparent);
+  }
+  .divider-logo {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+  }
+
+  /* "LIVE" tag */
+  .live-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.6);
+    margin-top: 8px;
+    margin-bottom: 22px;
+  }
+
+  /* Date */
+  .date-block {
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .date-day {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.6);
+    line-height: 1;
+  }
+  .date-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .date-number {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 68px;
+    line-height: 1;
+    color: #f5edd5;
+    text-shadow: 0 0 40px rgba(232,140,20,0.3);
+    letter-spacing: -2px;
+  }
+  .date-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 68px;
+  }
+  .date-month {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #e8a030;
+    line-height: 1;
+  }
+  .date-time {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.55);
+    margin-top: 8px;
+  }
+
+  /* Thin separator */
+  .sep {
+    width: 60px;
+    height: 1px;
+    background: rgba(232,140,20,0.5);
+    margin: 18px auto;
+  }
+
+  /* Venue */
+  .venue-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f5edd5;
+    margin-bottom: 6px;
+  }
+  .venue-address {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.6);
+    margin-bottom: 24px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .venue-address:hover { color: #f5edd5; }
+
+  /* Venue badge — bottom right: contact (label + WhatsApp number) + venue logo */
+  .venue-badge {
+    position: absolute;
+    bottom: 30px;
+    right: 36px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .venue-contact {
+    text-decoration: none;
+    text-align: right;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .venue-info-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(245,237,213,0.7);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .venue-info-number {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: #f5edd5;
+    line-height: 1.2;
+  }
+  .venue-info-number .wa-icon-small {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .venue-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 8px;
+    object-fit: cover;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,0.7));
+    flex-shrink: 0;
+  }
+
+  /* Print rules — keep the in-poster artwork clean for PDF export. */
+  @media print {
+    @page { size: A4 portrait; margin: 0; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #1D0D00;
+    }
+    body {
+      display: block;
+      min-height: 0;
+    }
+    .poster {
+      margin: 0;
+      box-shadow: none;
+      page-break-after: avoid;
+    }
+    /* Chrome's PDF renderer rasterises large blur radii as solid
+       coloured rectangles instead of soft glows. Drop the shadows
+       and mirror filters for print only. */
+    .band-name,
+    .date-number {
+      text-shadow: none;
+    }
+    .singer-photo,
+    .musician-photo {
+      box-shadow: none;
+    }
+    .cta-buttons { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- Singer portraits -->
+  <div class="singers">
+    <img class="singer-photo singer-honey" src="images/fulls/08.jpg?v=829695d" alt="Honey – Francesca" />
+    <img class="singer-photo singer-fire"  src="images/fulls/09.jpg?v=829695d" alt="Fire – Giorgia" />
+  </div>
+
+  <!-- Musicians row -->
+  <div class="musicians">
+    <div class="musician">
+      <img class="musician-photo" src="images/members/guitar.jpg?v=829695d" alt="Patrizio – Chitarra" />
+    </div>
+    <div class="musician">
+      <img class="musician-photo" src="images/members/gabriele.jpg?v=829695d" alt="Gabriele – Tastiere" />
+    </div>
+    <div class="musician">
+      <img class="musician-photo" src="images/members/valerio.jpg?v=829695d" alt="Valerio – Basso" />
+    </div>
+    <div class="musician">
+      <img class="musician-photo" src="images/members/gabriel.jpg?v=829695d" alt="Gabriel – Batteria" />
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div class="overlay"></div>
+
+  <!-- Top badge -->
+  <div class="top-badge">
+    <span>Una serata con</span>
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+
+    <div class="band-name">
+      Honey <span class="amp">&amp;</span> <span class="fire">Fire</span>
+    </div>
+
+    <div class="live-tag">Pop &nbsp;·&nbsp; Soul &nbsp;·&nbsp; Funk</div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <img class="divider-logo" src="logo-dark.svg?v=829695d" alt="Honey & Fire" />
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="date-block">
+      <a class="qr-link" href="https://www.instagram.com/honeyandfire_band" target="_blank" rel="noopener">
+        <img class="qr-img" src="images/qr-instagram.jpg?v=829695d" alt="Instagram @honeyandfire_band" />
+      </a>
+      <a class="qr-link qr-right" href="https://www.facebook.com/share/1Ax3o1t19K/?mibextid=wwXIfr" target="_blank" rel="noopener">
+        <img class="qr-img" src="images/qr-facebook.png?v=829695d" alt="Facebook Honey & Fire" />
+      </a>
+      <div class="date-main">
+        <span class="date-number">26</span>
+        <div class="date-stack">
+          <span class="date-day">Domenica</span>
+          <span class="date-month">Luglio</span>
+        </div>
+      </div>
+      <div class="date-time">ore 21.00</div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="venue-name">The Riff Live Music</div>
+    <a class="venue-address" href="https://www.google.com/maps?q=Via+Portuense+1453/B,+00148+Roma+RM" target="_blank" rel="noopener">Via Portuense, 1453/B<br/>00148 Roma (RM)</a>
+
+  </div><!-- /content -->
+
+  <!-- The Riff badge — bottom right: contact placeholder + venue logo -->
+  <div class="venue-badge">
+    <a class="venue-contact" href="https://wa.me/393929601029" target="_blank" rel="noopener">
+      <div class="venue-info-label">Info e prenotazioni</div>
+      <div class="venue-info-number">
+        <svg class="wa-icon-small" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="#25D366"/>
+          <path fill="#fff" d="M23.5 8.5A10.44 10.44 0 0016.01 5.5C10.76 5.5 6.5 9.76 6.5 15.01c0 1.68.44 3.32 1.28 4.76L6.5 25.5l5.87-1.54a10.47 10.47 0 004.64 1.09h.01c5.25 0 9.51-4.26 9.51-9.51A9.46 9.46 0 0023.5 8.5zm-7.49 14.63h-.01c-1.42 0-2.82-.38-4.04-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.62 8.62 0 01-1.32-4.59c0-4.77 3.88-8.65 8.65-8.65a8.6 8.6 0 016.12 2.54 8.6 8.6 0 012.53 6.13c-.01 4.77-3.89 8.3-8.23 8.3zm4.74-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44l-.5-.01c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.76 4.38 3.87.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.51-.62 1.72-1.22.21-.6.21-1.11.15-1.22-.07-.1-.24-.16-.5-.29z"/>
+        </svg>
+        <span>392 960 1029</span>
+      </div>
+    </a>
+    <img class="venue-logo" src="images/the_riff_logo.jpg?v=829695d" alt="The Riff Live Music" />
+  </div>
+
+</div><!-- /poster -->
+
+<!-- Screen-only CTAs (hidden in @media print). -->
+<nav class="cta-buttons" aria-label="Link rapidi">
+  <a href="https://www.instagram.com/honeyandfire_band" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2.16c3.2 0 3.58.012 4.85.07 1.17.054 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.058 1.27.07 1.65.07 4.85s-.012 3.58-.07 4.85c-.054 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.058-1.65.07-4.85.07s-3.58-.012-4.85-.07c-1.17-.054-1.8-.25-2.23-.41a3.71 3.71 0 0 1-1.38-.9 3.71 3.71 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.172 15.58 2.16 15.2 2.16 12s.012-3.58.07-4.85c.054-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.172 8.8 2.16 12 2.16zm0 1.62c-3.14 0-3.51.012-4.75.07-.97.045-1.5.21-1.85.34-.46.18-.79.4-1.14.74-.34.34-.56.68-.74 1.14-.13.35-.3.88-.34 1.85-.058 1.24-.07 1.61-.07 4.75s.012 3.51.07 4.75c.045.97.21 1.5.34 1.85.18.46.4.79.74 1.14.34.34.68.56 1.14.74.35.13.88.3 1.85.34 1.24.058 1.61.07 4.75.07s3.51-.012 4.75-.07c.97-.045 1.5-.21 1.85-.34.46-.18.79-.4 1.14-.74.34-.34.56-.68.74-1.14.13-.35.3-.88.34-1.85.058-1.24.07-1.61.07-4.75s-.012-3.51-.07-4.75c-.045-.97-.21-1.5-.34-1.85a3.07 3.07 0 0 0-.74-1.14 3.07 3.07 0 0 0-1.14-.74c-.35-.13-.88-.3-1.85-.34-1.24-.058-1.61-.07-4.75-.07zm0 2.76a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92zm0 1.62a3.84 3.84 0 1 0 0 7.68 3.84 3.84 0 0 0 0-7.68zm5.65-2.93a1.275 1.275 0 1 1 0 2.55 1.275 1.275 0 0 1 0-2.55z"/>
+    </svg>
+    Instagram
+  </a>
+  <a href="https://www.facebook.com/share/1Ax3o1t19K/?mibextid=wwXIfr" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+    </svg>
+    Facebook
+  </a>
+  <a href="https://www.honeyandfire.band/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3 12h18M12 3a14 14 0 0 1 4 9 14 14 0 0 1-4 9 14 14 0 0 1-4-9 14 14 0 0 1 4-9z"/>
+    </svg>
+    Sito Web
+  </a>
+  <a href="https://www.google.com/maps?q=Via+Portuense+1453/B,+00148+Roma+RM" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+    </svg>
+    Mappa
+  </a>
+  <a class="cta-primary" href="https://wa.me/393929601029" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M23.5 8.5A10.44 10.44 0 0 0 16.01 5.5C10.76 5.5 6.5 9.76 6.5 15.01c0 1.68.44 3.32 1.28 4.76L6.5 25.5l5.87-1.54a10.47 10.47 0 0 0 4.64 1.09h.01c5.25 0 9.51-4.26 9.51-9.51A9.46 9.46 0 0 0 23.5 8.5zm-7.49 14.63h-.01c-1.42 0-2.82-.38-4.04-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.62 8.62 0 0 1-1.32-4.59c0-4.77 3.88-8.65 8.65-8.65a8.6 8.6 0 0 1 6.12 2.54 8.6 8.6 0 0 1 2.53 6.13c-.01 4.77-3.89 8.3-8.23 8.3zm4.74-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44l-.5-.01c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.76 4.38 3.87.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.51-.62 1.72-1.22.21-.6.21-1.11.15-1.22-.07-.1-.24-.16-.5-.29z"/>
+    </svg>
+    Prenota
+  </a>
+</nav>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+  }
+</script>
+</body>
+</html>
