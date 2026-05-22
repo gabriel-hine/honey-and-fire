@@ -124,12 +124,12 @@ TRANSLATIONS = [
         '<p>Our next live shows</p>',
     ),
     (
-        '<span class="event-card-date">Gioved&igrave; 21 Maggio &middot; ore 20:00</span>',
-        '<span class="event-card-date">Thursday, May 21 &middot; 8:00 PM</span>',
+        '<span class="event-card-date">Domenica 26 Luglio &middot; ore 21:00</span>',
+        '<span class="event-card-date">Sunday, July 26 &middot; 9:00 PM</span>',
     ),
     (
-        '<p class="event-card-meta">Via Litoranea 24, Ostia (RM)</p>',
-        '<p class="event-card-meta">Via Litoranea 24, Ostia (Rome)</p>',
+        '<p class="event-card-meta">Via Portuense, 1453/B, Roma (RM)</p>',
+        '<p class="event-card-meta">Via Portuense, 1453/B, Rome</p>',
     ),
     (
         '<span class="event-card-cta">Scopri di pi&ugrave; &rarr;</span>',

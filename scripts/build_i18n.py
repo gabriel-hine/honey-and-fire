@@ -60,8 +60,7 @@ LANG_REPLACEMENTS_ONCE = [
     ('<li class="nav-lang">\n\t\t\t\t\t\t\t<a href="/en/" hreflang="en"',
      '<li class="nav-lang nav-lang-active" aria-current="page">\n'
      '\t\t\t\t\t\t\t<a href="/en/" hreflang="en"'),
-    ('href="locandina-260521.html"', 'href="../locandina-260521.html"'),
-    ('href="honey-and-fire-260521.ics"', 'href="../honey-and-fire-260521.ics"'),
+    ('href="locandina-260726.html"', 'href="../locandina-260726.html"'),
 ]
 
 LANG_REPLACEMENTS_GLOBAL = [
