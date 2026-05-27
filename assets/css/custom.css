@@ -357,15 +357,50 @@
 
 /* ─── Video ─── */
 
+.video-grid {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 1.5em;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+/* Two independent columns pack tightly (no rigid row-bands), so the tallest
+   clip sits directly below the shortest and both columns end about even. */
+.video-col {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5em;
+	flex: 1;
+	min-width: 0;
+}
+
+@media screen and (max-width: 736px) {
+	.video-grid {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.video-col {
+		width: 100%;
+	}
+}
+
 .video-container {
 	position: relative;
-	padding-bottom: 56.25%;
-	height: 0;
+	aspect-ratio: 16 / 9;
+	width: 100%;
 	overflow: hidden;
-	max-width: 800px;
 	margin: 0 auto;
 	border-radius: 8px;
 	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Portrait clips render tall; cap width so they stay reasonable and centered. */
+.video-container.portrait {
+	max-width: 20em;
 }
 
 .video-container iframe {
