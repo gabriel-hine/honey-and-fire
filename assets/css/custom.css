@@ -403,7 +403,8 @@
 	max-width: 20em;
 }
 
-.video-container iframe {
+.video-container iframe,
+.video-container video {
 	position: absolute;
 	top: 0;
 	left: 0;
