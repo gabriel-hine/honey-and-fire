@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<title>Honey &amp; Fire — Instagram @ The Riff (1080×1350)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #7a2fb0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  /* IG feed-post 4:5 — 1080×1350 native. Summer palette: Instagram-logo
+     gradient (yellow bottom-left → magenta → purple top-right). White text,
+     the way the IG glyph sits on the gradient. A soft bottom scrim keeps the
+     lower text legible over the brighter orange/yellow zone. */
+  .poster {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(58,20,86,0.12) 0%, rgba(58,20,86,0) 55%, rgba(46,12,64,0.34) 100%),
+      url("images/hero-bg-portrait-summer.jpg?v=e867fe0") center / cover no-repeat,
+      #7a2fb0;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  /* Top badge */
+  .top-badge {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+  }
+  .top-badge span {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.7);
+    padding: 8px 24px;
+    border-radius: 2px;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+  }
+
+  /* Singer portraits */
+  .singers {
+    position: absolute;
+    top: 104px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 24px;
+    z-index: 3;
+  }
+  .singer {
+    width: 300px;
+    height: 356px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 4px solid #ffffff;
+    box-shadow: 0 10px 44px rgba(60,10,80,0.45);
+    display: block;
+  }
+  .singer-honey { object-position: center 12%; }
+  .singer-fire  { object-position: center 18%; transform: scaleX(-1); }
+
+  /* Musician portraits — row of 4 circles under the singers. */
+  .musicians {
+    position: absolute;
+    top: 486px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    z-index: 3;
+  }
+  .musician-photo {
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.95);
+    box-shadow: 0 6px 22px rgba(60,10,80,0.45);
+    display: block;
+  }
+
+  /* Band name */
+  .band-name {
+    position: absolute;
+    top: 636px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 118px;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #ffffff;
+    text-shadow: 0 3px 22px rgba(60,10,80,0.45), 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 5;
+  }
+  .band-name .amp { font-style: italic; }
+
+  .tagline {
+    position: absolute;
+    top: 770px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 14px;
+    color: rgba(255,255,255,0.92);
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+    z-index: 5;
+  }
+
+  /* Divider */
+  .divider {
+    position: absolute;
+    top: 800px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 540px;
+    z-index: 5;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.85), transparent);
+  }
+
+  /* Date */
+  .date-block {
+    position: absolute;
+    top: 900px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 5;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.32);
+  }
+  .date-day {
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.92);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .date-main {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    line-height: 1;
+  }
+  .date-number {
+    font-weight: 700;
+    font-size: 118px;
+    line-height: 1;
+    color: #ffffff;
+    letter-spacing: -3px;
+  }
+  .date-month {
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  .date-time {
+    margin-top: 16px;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.92);
+  }
+
+  /* Venue */
+  .venue {
+    position: absolute;
+    top: 1150px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 5;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.38);
+  }
+  .venue-name {
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  .venue-address {
+    margin-top: 14px;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.92);
+  }
+
+  /* Bottom-left: Instagram handle. Top-anchored so the headless
+     screenshot can't shave the line off. */
+  .social-badge {
+    position: absolute;
+    top: 1286px;
+    left: 70px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .social-badge svg { width: 34px; height: 34px; flex-shrink: 0; color: #ffffff; }
+  .social-handle {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.95);
+    line-height: 1;
+  }
+
+  /* Bottom-right: The Riff logo above the WhatsApp prenotazioni number.
+     column-reverse keeps DOM order link → logo while showing the logo on
+     top; top-anchored like .social-badge. */
+  .venue-badge {
+    position: absolute;
+    top: 1150px;
+    right: 70px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .venue-contact { text-decoration: none; text-align: center; color: inherit; }
+  .venue-info-label {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .venue-info-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    line-height: 1.1;
+  }
+  .venue-info-number .wa-icon-small { width: 38px; height: 38px; flex-shrink: 0; }
+  .venue-logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+    object-fit: cover;
+    opacity: 0.98;
+    filter: drop-shadow(0 0 10px rgba(60,10,80,0.5));
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="top-badge"><span>Una serata con</span></div>
+
+  <div class="singers">
+    <img class="singer singer-honey" src="images/fulls/08.jpg?v=e867fe0" alt="Honey – Francesca" />
+    <img class="singer singer-fire"  src="images/fulls/09.jpg?v=e867fe0" alt="Fire – Giorgia" />
+  </div>
+
+  <div class="musicians">
+    <img class="musician-photo" src="images/members/guitar.jpg?v=e867fe0" alt="Patrizio – Chitarra" />
+    <img class="musician-photo" src="images/members/gabriele.jpg?v=e867fe0" alt="Gabriele – Tastiere" />
+    <img class="musician-photo" src="images/members/mario.png?v=e867fe0" alt="Mario – Basso" />
+    <img class="musician-photo" src="images/members/gabriel.jpg?v=e867fe0" alt="Gabriel – Batteria" />
+  </div>
+
+  <h1 class="band-name">Honey <span class="amp">&amp;</span> <span class="fire">Fire</span></h1>
+
+  <div class="tagline">Pop &nbsp;·&nbsp; Soul &nbsp;·&nbsp; Funk</div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="date-block">
+    <span class="date-day">Domenica</span>
+    <div class="date-main">
+      <span class="date-number">26</span>
+      <span class="date-month">Luglio</span>
+    </div>
+  </div>
+
+  <div class="venue">
+    <div class="venue-name">The Riff Live Music</div>
+    <div class="venue-address">Via Portuense 1453/B &middot; 00148 Roma (RM)</div>
+  </div>
+
+  <div class="social-badge">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2.16c3.2 0 3.58.012 4.85.07 1.17.054 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.058 1.27.07 1.65.07 4.85s-.012 3.58-.07 4.85c-.054 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.058-1.65.07-4.85.07s-3.58-.012-4.85-.07c-1.17-.054-1.8-.25-2.23-.41a3.71 3.71 0 0 1-1.38-.9 3.71 3.71 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.172 15.58 2.16 15.2 2.16 12s.012-3.58.07-4.85c.054-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.172 8.8 2.16 12 2.16zm0 1.62c-3.14 0-3.51.012-4.75.07-.97.045-1.5.21-1.85.34-.46.18-.79.4-1.14.74-.34.34-.56.68-.74 1.14-.13.35-.3.88-.34 1.85-.058 1.24-.07 1.61-.07 4.75s.012 3.51.07 4.75c.045.97.21 1.5.34 1.85.18.46.4.79.74 1.14.34.34.68.56 1.14.74.35.13.88.3 1.85.34 1.24.058 1.61.07 4.75.07s3.51-.012 4.75-.07c.97-.045 1.5-.21 1.85-.34.46-.18.79-.4 1.14-.74.34-.34.56-.68.74-1.14.13-.35.3-.88.34-1.85.058-1.24.07-1.61.07-4.75s-.012-3.51-.07-4.75c-.045-.97-.21-1.5-.34-1.85a3.07 3.07 0 0 0-.74-1.14 3.07 3.07 0 0 0-1.14-.74c-.35-.13-.88-.3-1.85-.34-1.24-.058-1.61-.07-4.75-.07zm0 2.76a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92zm0 1.62a3.84 3.84 0 1 0 0 7.68 3.84 3.84 0 0 0 0-7.68zm5.65-2.93a1.275 1.275 0 1 1 0 2.55 1.275 1.275 0 0 1 0-2.55z"/>
+    </svg>
+    <span class="social-handle">@honeyandfire_band</span>
+  </div>
+
+  <div class="venue-badge">
+    <a class="venue-contact" href="https://wa.me/393929601029">
+      <div class="venue-info-label">Info e prenotazioni</div>
+      <div class="venue-info-number">
+        <svg class="wa-icon-small" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="#25D366"/>
+          <path fill="#fff" d="M23.5 8.5A10.44 10.44 0 0016.01 5.5C10.76 5.5 6.5 9.76 6.5 15.01c0 1.68.44 3.32 1.28 4.76L6.5 25.5l5.87-1.54a10.47 10.47 0 004.64 1.09h.01c5.25 0 9.51-4.26 9.51-9.51A9.46 9.46 0 0023.5 8.5zm-7.49 14.63h-.01c-1.42 0-2.82-.38-4.04-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.62 8.62 0 01-1.32-4.59c0-4.77 3.88-8.65 8.65-8.65a8.6 8.6 0 016.12 2.54 8.6 8.6 0 012.53 6.13c-.01 4.77-3.89 8.3-8.23 8.3zm4.74-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44l-.5-.01c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.76 4.38 3.87.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.51-.62 1.72-1.22.21-.6.21-1.11.15-1.22-.07-.1-.24-.16-.5-.29z"/>
+        </svg>
+        <span>392 960 1029</span>
+      </div>
+    </a>
+    <img class="venue-logo" src="images/the_riff_logo.jpg?v=e867fe0" alt="The Riff Live Music" />
+  </div>
+
+</div>
+</body>
+</html>
