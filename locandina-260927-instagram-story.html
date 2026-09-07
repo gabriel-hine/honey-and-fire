@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8" />
-<title>Honey & Fire — Instagram (1080×1350)</title>
+<title>Honey &amp; Fire — Instagram Story @ Casa Clandestina (1080×1920)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -17,13 +17,19 @@
     min-height: 100vh;
   }
 
-  /* IG feed-post 4:5 — 1080×1350 native, viewable at any scaling. */
+  /* IG story 9:16 — 1080×1920 native. Background mirrors the A4
+     locandina: scrim over the honeycomb + flame portrait. All content is
+     kept between y=250 and y=1670 so Instagram's top/bottom UI can't
+     cover it. */
   .poster {
     position: relative;
     width: 1080px;
-    height: 1350px;
+    height: 1920px;
     overflow: hidden;
-    background: #1D0D00;
+    background:
+      linear-gradient(180deg, rgba(29,13,0,0.55), rgba(29,13,0,0.30) 42%, rgba(29,13,0,0.88)),
+      url("images/hero-bg-portrait.jpg?v=e867fe0") center / cover no-repeat,
+      #1D0D00;
     color: #f5edd5;
     font-family: 'Oswald', sans-serif;
   }
@@ -31,14 +37,15 @@
   /* Top badge */
   .top-badge {
     position: absolute;
-    top: 40px;
+    top: 270px;
     left: 0;
     right: 0;
     text-align: center;
+    z-index: 10;
   }
   .top-badge span {
     display: inline-block;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: 8px;
     text-transform: uppercase;
@@ -48,50 +55,70 @@
     border-radius: 2px;
   }
 
-  /* Layout uses absolute positioning with explicit line-heights so the
-     rendered geometry matches the design coords (otherwise inherited
-     line-heights of ~1.4 push elements well past the canvas edge). */
-
   /* Singer portraits */
   .singers {
     position: absolute;
-    top: 86px;
+    top: 356px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 22px;
+    gap: 24px;
+    z-index: 3;
   }
   .singer {
     width: 320px;
-    height: 390px;
+    height: 380px;
     object-fit: cover;
     border-radius: 4px;
     border: 4px solid #e8a030;
+    box-shadow: 0 10px 44px rgba(0,0,0,0.85);
     display: block;
   }
   .singer-honey { object-position: center 12%; }
   .singer-fire  { object-position: center 18%; transform: scaleX(-1); }
 
+  /* Musician portraits — row of 4 circles under the singers. */
+  .musicians {
+    position: absolute;
+    top: 776px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    z-index: 3;
+  }
+  .musician-photo {
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(232,160,48,0.85);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.75);
+    display: block;
+  }
+
   /* Band name */
   .band-name {
     position: absolute;
-    top: 525px;
+    top: 950px;
     left: 0;
     right: 0;
     text-align: center;
     font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: 130px;
-    line-height: 1.1;
+    font-size: 118px;
+    line-height: 1;
     letter-spacing: -2px;
     color: #f5edd5;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    z-index: 5;
   }
   .band-name .amp { color: #e8841a; font-style: italic; }
   .band-name .fire { color: #f0a040; }
 
   .tagline {
     position: absolute;
-    top: 685px;
+    top: 1100px;
     left: 0;
     right: 0;
     text-align: center;
@@ -99,19 +126,21 @@
     line-height: 1;
     font-weight: 600;
     letter-spacing: 14px;
-    color: rgba(245,237,213,0.6);
+    color: rgba(245,237,213,0.62);
+    z-index: 5;
   }
 
   /* Hexagon divider */
   .divider {
     position: absolute;
-    top: 725px;
+    top: 1152px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     gap: 18px;
     width: 540px;
+    z-index: 5;
   }
   .divider-line {
     flex: 1;
@@ -119,18 +148,19 @@
     background: linear-gradient(to right, transparent, rgba(232,140,20,0.8), transparent);
   }
   .divider-logo {
-    width: 90px;
-    height: 90px;
+    width: 86px;
+    height: 86px;
     display: block;
   }
 
   /* Date */
   .date-block {
     position: absolute;
-    top: 780px;
+    top: 1215px;
     left: 0;
     right: 0;
     text-align: center;
+    z-index: 5;
   }
   .date-day {
     font-size: 26px;
@@ -151,7 +181,7 @@
   }
   .date-number {
     font-weight: 700;
-    font-size: 120px;
+    font-size: 118px;
     line-height: 1;
     color: #f5edd5;
     letter-spacing: -3px;
@@ -164,96 +194,72 @@
     text-transform: uppercase;
     color: #e8a030;
   }
-  .date-time {
-    margin-top: 16px;
-    font-size: 24px;
-    line-height: 1;
-    font-weight: 300;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: rgba(245,237,213,0.6);
-  }
 
   /* Venue */
   .venue {
     position: absolute;
-    top: 1015px;
+    top: 1410px;
     left: 0;
     right: 0;
     text-align: center;
+    z-index: 5;
   }
   .venue-name {
-    font-size: 50px;
+    font-size: 52px;
     line-height: 1;
     font-weight: 600;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     text-transform: uppercase;
     color: #f5edd5;
   }
   .venue-address {
-    margin-top: 12px;
-    font-size: 20px;
-    line-height: 1;
+    margin-top: 16px;
+    font-size: 22px;
+    line-height: 1.4;
     font-weight: 300;
     letter-spacing: 5px;
     text-transform: uppercase;
     color: rgba(245,237,213,0.7);
   }
 
-  /* Bottom-left: Grande Giove portrait stacked above the "a seguire /
-     Jam Session" label. Anchored by `top` (not `bottom`) so Chrome's
-     headless screenshot can't shave the trailing line off — pulling
-     the badge ~18px above the canvas bottom keeps the title text
-     fully inside the 1350-tall frame. */
-  .jam-badge {
+  /* Bottom-left: Instagram handle. Top-anchored so the headless
+     screenshot can't shave the line off. */
+  .social-badge {
     position: absolute;
-    top: 1105px;
-    left: 70px;
+    top: 1636px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    z-index: 10;
   }
-  .jam-img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(232,140,20,0.6);
-    filter: brightness(0.88) saturate(0.95);
-  }
-  .jam-text { text-align: center; line-height: 1.1; }
-  .jam-label {
-    font-size: 16px;
+  .social-badge svg { width: 34px; height: 34px; flex-shrink: 0; color: #f5edd5; }
+  .social-handle {
+    font-size: 24px;
     font-weight: 400;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(245,237,213,0.6);
-  }
-  .jam-title {
-    font-weight: 500;
-    font-size: 44px;
     letter-spacing: 1.5px;
-    color: rgba(245,237,213,0.92);
-    margin-top: 6px;
+    color: rgba(245,237,213,0.9);
+    line-height: 1;
   }
 
-  /* Bottom-right: Pub Clown logo stacked above the WhatsApp prenotazioni
-     phone number. column-reverse keeps the DOM order link → logo while
-     visually placing the logo on top. Same top-anchor trick as
-     .jam-badge so the bottom line never gets shaved by the screenshot. */
+  /* Bottom-right: the venue logo above the WhatsApp prenotazioni number.
+     column-reverse keeps DOM order link → logo while showing the logo on
+     top; top-anchored like .social-badge. */
   .venue-badge {
     position: absolute;
-    top: 1105px;
-    right: 70px;
+    top: 1535px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row-reverse;
     align-items: center;
-    gap: 10px;
+    gap: 22px;
+    z-index: 10;
   }
-  .venue-contact { text-decoration: none; text-align: center; color: inherit; }
+  .venue-contact { text-decoration: none; text-align: left; color: inherit; }
   .venue-info-label {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -264,25 +270,23 @@
   .venue-info-number {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 14px;
-    font-size: 44px;
+    justify-content: flex-start;
+    gap: 12px;
+    font-size: 36px;
     font-weight: 500;
     letter-spacing: 1.5px;
     color: #f5edd5;
     line-height: 1.1;
   }
-  .venue-info-number .wa-icon-small {
-    width: 44px;
-    height: 44px;
-    flex-shrink: 0;
-  }
+  .venue-info-number .wa-icon-small { width: 38px; height: 38px; flex-shrink: 0; }
   .venue-logo {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    opacity: 0.92;
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 4px;
+    object-fit: contain;
+    opacity: 0.95;
     filter: drop-shadow(0 0 10px rgba(0,0,0,0.7));
   }
 </style>
@@ -297,44 +301,53 @@
     <img class="singer singer-fire"  src="images/fulls/09.jpg?v=cf144c2" alt="Fire – Giorgia" />
   </div>
 
+  <div class="musicians">
+    <img class="musician-photo" src="images/members/guitar.jpg?v=cf144c2" alt="Patrizio – Chitarra" />
+    <img class="musician-photo" src="images/members/gabriele.jpg?v=cf144c2" alt="Gabriele – Tastiere" />
+    <img class="musician-photo" src="images/members/riccardo.jpg?v=cf144c2" alt="Riccardo – Basso" />
+    <img class="musician-photo" src="images/members/gabriel.jpg?v=cf144c2" alt="Gabriel – Batteria" />
+  </div>
+
   <h1 class="band-name">Honey <span class="amp">&amp;</span> <span class="fire">Fire</span></h1>
 
   <div class="tagline">Pop &nbsp;·&nbsp; Soul &nbsp;·&nbsp; Funk</div>
 
+  <div class="divider">
+    <div class="divider-line"></div>
+  </div>
+
   <div class="date-block">
-    <span class="date-day">Giovedì</span>
+    <span class="date-day">Domenica</span>
     <div class="date-main">
-      <span class="date-number">21</span>
-      <span class="date-month">Maggio</span>
+      <span class="date-number">27</span>
+      <span class="date-month">Settembre</span>
     </div>
-    <div class="date-time">ore 20.00</div>
   </div>
 
   <div class="venue">
-    <div class="venue-name">Pub Clown</div>
-    <div class="venue-address">Via Litoranea 24 &middot; Ostia (RM)</div>
+    <div class="venue-name">Casa Clandestina</div>
+    <div class="venue-address">Via Alessandro Geraldini 12 &middot; Ostia &middot; Roma</div>
   </div>
 
-  <div class="jam-badge">
-    <img class="jam-img" src="images/grande_giove.png?v=cf144c2" alt="Grande Giove" />
-    <div class="jam-text">
-      <div class="jam-label">a seguire</div>
-      <div class="jam-title">Jam Session</div>
-    </div>
+  <div class="social-badge">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2.16c3.2 0 3.58.012 4.85.07 1.17.054 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.058 1.27.07 1.65.07 4.85s-.012 3.58-.07 4.85c-.054 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.058-1.65.07-4.85.07s-3.58-.012-4.85-.07c-1.17-.054-1.8-.25-2.23-.41a3.71 3.71 0 0 1-1.38-.9 3.71 3.71 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.172 15.58 2.16 15.2 2.16 12s.012-3.58.07-4.85c.054-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.172 8.8 2.16 12 2.16zm0 1.62c-3.14 0-3.51.012-4.75.07-.97.045-1.5.21-1.85.34-.46.18-.79.4-1.14.74-.34.34-.56.68-.74 1.14-.13.35-.3.88-.34 1.85-.058 1.24-.07 1.61-.07 4.75s.012 3.51.07 4.75c.045.97.21 1.5.34 1.85.18.46.4.79.74 1.14.34.34.68.56 1.14.74.35.13.88.3 1.85.34 1.24.058 1.61.07 4.75.07s3.51-.012 4.75-.07c.97-.045 1.5-.21 1.85-.34.46-.18.79-.4 1.14-.74.34-.34.56-.68.74-1.14.13-.35.3-.88.34-1.85.058-1.24.07-1.61.07-4.75s-.012-3.51-.07-4.75c-.045-.97-.21-1.5-.34-1.85a3.07 3.07 0 0 0-.74-1.14 3.07 3.07 0 0 0-1.14-.74c-.35-.13-.88-.3-1.85-.34-1.24-.058-1.61-.07-4.75-.07zm0 2.76a5.46 5.46 0 1 1 0 10.92 5.46 5.46 0 0 1 0-10.92zm0 1.62a3.84 3.84 0 1 0 0 7.68 3.84 3.84 0 0 0 0-7.68zm5.65-2.93a1.275 1.275 0 1 1 0 2.55 1.275 1.275 0 0 1 0-2.55z"/>
+    </svg>
+    <span class="social-handle">@honeyandfire_band</span>
   </div>
 
   <div class="venue-badge">
-    <a class="venue-contact" href="https://wa.me/393398609330">
+    <a class="venue-contact" href="https://wa.me/393934867002">
       <div class="venue-info-label">Info e prenotazioni</div>
       <div class="venue-info-number">
         <svg class="wa-icon-small" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="16" cy="16" r="16" fill="#25D366"/>
           <path fill="#fff" d="M23.5 8.5A10.44 10.44 0 0016.01 5.5C10.76 5.5 6.5 9.76 6.5 15.01c0 1.68.44 3.32 1.28 4.76L6.5 25.5l5.87-1.54a10.47 10.47 0 004.64 1.09h.01c5.25 0 9.51-4.26 9.51-9.51A9.46 9.46 0 0023.5 8.5zm-7.49 14.63h-.01c-1.42 0-2.82-.38-4.04-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.62 8.62 0 01-1.32-4.59c0-4.77 3.88-8.65 8.65-8.65a8.6 8.6 0 016.12 2.54 8.6 8.6 0 012.53 6.13c-.01 4.77-3.89 8.3-8.23 8.3zm4.74-6.48c-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.58.13-.17.26-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.5-.43-.43-.58-.44l-.5-.01c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.49 1.05 2.66c.13.17 1.81 2.76 4.38 3.87.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.51-.62 1.72-1.22.21-.6.21-1.11.15-1.22-.07-.1-.24-.16-.5-.29z"/>
         </svg>
-        <span>339 860 9330</span>
+        <span>393 486 7002</span>
       </div>
     </a>
-    <img class="venue-logo" src="images/pub_clown_logo.png?v=cf144c2" alt="Il Clown Pub" />
+    <img class="venue-logo" src="images/casa-clandestina.jpeg?v=cf144c2" alt="Casa Clandestina" />
   </div>
 
 </div>

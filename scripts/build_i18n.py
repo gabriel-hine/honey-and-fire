@@ -60,7 +60,7 @@ LANG_REPLACEMENTS_ONCE = [
     ('<li class="nav-lang">\n\t\t\t\t\t\t\t<a href="/en/" hreflang="en"',
      '<li class="nav-lang nav-lang-active" aria-current="page">\n'
      '\t\t\t\t\t\t\t<a href="/en/" hreflang="en"'),
-    ('href="locandina-260726.html"', 'href="../locandina-260726.html"'),
+    ('href="locandina-260927.html"', 'href="../locandina-260927.html"'),
 ]
 
 LANG_REPLACEMENTS_GLOBAL = [
@@ -69,8 +69,9 @@ LANG_REPLACEMENTS_GLOBAL = [
 ]
 
 # Local asset prefixes — index.html lives at root, en/index.html one level
-# deep, so href|src starting with assets/ or images/ get a "../" prefix.
-ASSET_PATH_RE = re.compile(r'((?:href|src)=")(assets/|images/)')
+# deep, so href|src|poster starting with assets/, images/ or videos/ get a
+# "../" prefix.
+ASSET_PATH_RE = re.compile(r'((?:href|src|poster)=")(assets/|images/|videos/)')
 
 
 def regenerate_en(it_source: str, pairs: list[tuple[str, str]]) -> str:

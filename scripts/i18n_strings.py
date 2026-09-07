@@ -108,10 +108,6 @@ TRANSLATIONS = [
         '<p class="member-role">Keyboards</p>',
     ),
     (
-        '<p class="member-role">Basso</p>',
-        '<p class="member-role">Bass</p>',
-    ),
-    (
         '<p class="member-role">Batteria</p>',
         '<p class="member-role">Drums</p>',
     ),
@@ -124,12 +120,12 @@ TRANSLATIONS = [
         '<p>Our next live shows</p>',
     ),
     (
-        '<span class="event-card-date">Domenica 26 Luglio &middot; ore 21:00</span>',
-        '<span class="event-card-date">Sunday, July 26 &middot; 9:00 PM</span>',
+        '<span class="event-card-date">Domenica 27 Settembre</span>',
+        '<span class="event-card-date">Sunday, September 27</span>',
     ),
     (
-        '<p class="event-card-meta">Via Portuense, 1453/B, Roma (RM)</p>',
-        '<p class="event-card-meta">Via Portuense, 1453/B, Rome</p>',
+        '<p class="event-card-meta">Via Alessandro Geraldini, 12, Roma (RM)</p>',
+        '<p class="event-card-meta">Via Alessandro Geraldini 12, Rome</p>',
     ),
     (
         '<span class="event-card-cta">Scopri di pi&ugrave; &rarr;</span>',
@@ -142,6 +138,10 @@ TRANSLATIONS = [
     (
         '<p>Momenti dai nostri eventi</p>',
         '<p>Moments from our shows</p>',
+    ),
+    (
+        '<p>Guardaci in azione</p>',
+        '<p>Watch us in action</p>',
     ),
     (
         '<h2>Repertorio</h2>',
